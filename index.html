@@ -3,61 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر AD__bear</title>
+    <title>متجر AD__bear | الأناقة العصرية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* تغيير خلفية الموقع وألوان النصوص */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; }
-        header { background: #1a1a1a; color: white; padding: 20px; border-radius: 15px; margin-bottom: 30px; }
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #25d366;
+            --price-color: #e63946;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background: var(--bg-gradient); 
+            margin: 0; 
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        header { 
+            background: rgba(26, 26, 26, 0.95); 
+            color: white; 
+            padding: 40px 20px; 
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 50px;
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
+        header p { opacity: 0.8; font-size: 1.1rem; margin-top: 10px; }
+
+        .container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            max-width: 1200px; 
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        /* تنسيق بطاقة المنتج الجديد */
+        .card { 
+            background: white; 
+            border-radius: 25px; 
+            overflow: hidden; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card:hover { 
+            transform: translateY(-15px); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+        }
+
+        .card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .info { padding: 25px; text-align: center; }
         
-        /* تنسيق شبكة المنتجات */
-        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; }
-        
-        /* تنسيق بطاقة المنتج (الواجهة) */
-        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.3s; }
-        .card img { width: 100%; height: 350px; object-fit: cover; }
-        .info { padding: 20px; }
-        .price { color: #d32f2f; font-size: 1.6rem; font-weight: bold; margin: 10px 0; }
-        
-        /* زر الواتساب الجديد */
-        .btn { display: block; background: #25d366; color: white; padding: 12px; text-decoration: none; border-radius: 10px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #1ebd59; }
+        .info h3 { 
+            margin: 0; 
+            color: var(--primary-color); 
+            font-size: 1.4rem;
+        }
+
+        .price { 
+            color: var(--price-color); 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            margin: 15px 0;
+            display: block;
+        }
+
+        /* زر الواتساب المطور */
+        .btn { 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--accent-color); 
+            color: white; 
+            padding: 15px; 
+            text-decoration: none; 
+            border-radius: 15px; 
+            font-weight: bold; 
+            font-size: 1.1rem;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn:hover { 
+            background: #1ebd59; 
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn i { font-size: 1.4rem; }
+
+        /* تذييل الصفحة */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>متجر AD__bear 🐻✨</h1>
-        <p>أحدث صيحات الملابس العصرية بين يديك</p>
+        <p>الأناقة والراحة في مكان واحد</p>
     </header>
 
     <div class="container">
         <div class="card">
-            <img src="0e03061c982d648fbfa56f692930f03b.jpg" alt="منتج">
+            <div class="image-container">
+                <img src="0e03061c982d648fbfa56f692930f03b.jpg" alt="قميص كاجوال">
+            </div>
             <div class="info">
                 <h3>قميص كاجوال أنيق</h3>
-                <p class="price">220 درهم</p>
-                <a href="https://wa.me/212770940367" class="btn">اطلب عبر واتساب</a>
+                <span class="price">220 درهم</span>
+                <a href="https://wa.me/212770940367" class="btn">
+                    <i class="fab fa-whatsapp"></i> اطلب عبر واتساب
+                </a>
             </div>
         </div>
 
         <div class="card">
-            <img src="0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg" alt="منتج">
+            <div class="image-container">
+                <img src="0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg" alt="هودي عصري">
+            </div>
             <div class="info">
-                <h3>هودي عصري</h3>
-                <p class="price">199 درهم</p>
-                <a href="https://wa.me/212770940367" class="btn">اطلب عبر واتساب</a>
+                <h3>هودي عصري مريح</h3>
+                <span class="price">199 درهم</span>
+                <a href="https://wa.me/212770940367" class="btn">
+                    <i class="fab fa-whatsapp"></i> اطلب عبر واتساب
+                </a>
             </div>
         </div>
 
         <div class="card">
-            <img src="d24dbf3ebd288e1eb642aeaf6e189fbd.jpg" alt="منتج">
+            <div class="image-container">
+                <img src="d24dbf3ebd288e1eb642aeaf6e189fbd.jpg" alt="جاكيت شتوي">
+            </div>
             <div class="info">
                 <h3>جاكيت شتوي فاخر</h3>
-                <p class="price">294 درهم </p>
-                <a href="https://wa.me/212770940367" class="btn">اطلب عبر واتساب</a>
+                <span class="price">294 درهم</span>
+                <a href="https://wa.me/212770940367" class="btn">
+                    <i class="fab fa-whatsapp"></i> اطلب عبر واتساب
+                </a>
             </div>
         </div>
     </div>
+
+    <footer>
+        جميع الحقوق محفوظة لمتجر AD__bear &copy; 2026
+    </footer>
 
 </body>
 </html>
