@@ -1,163 +1,109 @@
-  <!DOCTYPE html>
+       
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر AD__bear الفاخر 🐻</title>
+    <title>متجر AD__bear 🐻</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root {
-            --primary: #1a1a1a;
-            --accent: #25d366;
-            --bg: #0d0d0d;
-        }
-
-        body { 
-            font-family: 'Cairo', sans-serif; 
-            background-color: var(--bg);
-            color: white; margin: 0; padding: 0;
-        }
-
-        header { 
-            text-align: center; padding: 60px 20px; 
-            background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
-        }
-
-        header h1 { font-size: 3rem; margin: 0; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.2); }
-
-        .container { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; max-width: 1200px; margin: auto; padding: 40px 20px;
-        }
-
-        /* تصميم البطاقة */
-        .card { 
-            background: #1a1a1a; border-radius: 25px; overflow: hidden; 
-            cursor: pointer; transition: 0.4s; border: 1px solid #333;
-        }
-        .card:hover { transform: translateY(-10px); border-color: var(--accent); }
-        .card img { width: 100%; height: 400px; object-fit: cover; }
-        .card-info { padding: 20px; text-align: center; }
-        .card-info h3 { margin: 10px 0; font-size: 1.5rem; }
-        .price { color: var(--accent); font-size: 1.8rem; font-weight: 900; display: block; margin-bottom: 15px; }
-
-        /* الواجهة المنبثقة (التي كان فيها الخطأ) */
-        .modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); z-index: 1000;
-            display: none; align-items: center; justify-content: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .modal-content {
-            background: #fff; color: #333; width: 90%; max-width: 900px;
-            border-radius: 30px; display: flex; flex-wrap: wrap; overflow: hidden;
-            position: relative; animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-
-        .modal-close {
-            position: absolute; top: 20px; left: 20px; font-size: 2rem;
-            cursor: pointer; color: #333; z-index: 5;
-        }
-
-        .modal-img-side { flex: 1; min-width: 300px; height: 500px; }
-        .modal-img-side img { width: 100%; height: 100%; object-fit: cover; }
-
-        .modal-text-side { flex: 1; min-width: 300px; padding: 40px; text-align: right; }
-        .modal-text-side h2 { font-size: 2.5rem; margin: 0; }
-        .modal-text-side .modal-price { color: #1ebd59; font-size: 2.5rem; font-weight: 900; margin: 20px 0; }
+        :root { --primary: #1a1a1a; --accent: #25d366; --bg: #0d0d0d; }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg); color: white; margin: 0; padding: 0; }
+        header { text-align: center; padding: 50px 20px; background: #1a1a1a; }
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: auto; padding: 20px; }
         
-        .whatsapp-btn {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: var(--accent); color: white; padding: 18px;
-            text-decoration: none; border-radius: 15px; font-weight: bold; font-size: 1.2rem;
-        }
+        .card { background: #1a1a1a; border-radius: 20px; overflow: hidden; cursor: pointer; border: 1px solid #333; transition: 0.3s; }
+        .card:hover { transform: scale(1.02); border-color: var(--accent); }
+        .card img { width: 100%; height: 350px; object-fit: cover; pointer-events: none; }
+        .card-info { padding: 15px; text-align: center; }
+        .price { color: var(--accent); font-size: 1.5rem; font-weight: bold; display: block; }
 
-        @media (max-width: 768px) {
-            .modal-content { flex-direction: column; height: 90vh; overflow-y: auto; }
-            .modal-img-side { height: 300px; }
+        /* النافذة المنبثقة */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: none; align-items: center; justify-content: center; }
+        .modal-content { background: white; color: black; width: 90%; max-width: 500px; border-radius: 20px; padding: 20px; position: relative; text-align: center; }
+        .modal img { width: 100%; border-radius: 15px; margin-bottom: 15px; max-height: 300px; object-fit: cover; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 25px; cursor: pointer; color: #000; }
+        
+        .whatsapp-link { 
+            display: inline-block; background: var(--accent); color: white; 
+            padding: 15px 30px; text-decoration: none; border-radius: 10px; 
+            font-weight: bold; font-size: 1.2rem; margin-top: 20px; width: 80%;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>AD__bear 🐻✨</h1>
-        <p>مجموعتنا الحصرية لعام 2026</p>
+        <h1>متجر AD__bear 🐻✨</h1>
+        <p>اضغط على أي منتج لطلبه</p>
     </header>
 
     <div class="container">
-        <div class="card" onclick="showModal('قميص كاجوال أنيق', '220 درهم', '0e03061c982d648fbfa56f692930f03b.jpg')">
+        <div class="card" onclick="openMe('قميص كاجوال', '220 درهم', '0e03061c982d648fbfa56f692930f03b.jpg')">
             <img src="0e03061c982d648fbfa56f692930f03b.jpg">
             <div class="card-info">
                 <h3>قميص كاجوال أنيق</h3>
                 <span class="price">220 درهم</span>
-                <div style="color: #666;">اضغط للتفاصيل</div>
             </div>
         </div>
 
-        <div class="card" onclick="showModal('هودي عصري مريح', '199 درهم', '0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg')">
+        <div class="card" onclick="openMe('هودي عصري', '199 درهم', '0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg')">
             <img src="0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg">
             <div class="card-info">
                 <h3>هودي عصري مريح</h3>
                 <span class="price">199 درهم</span>
-                <div style="color: #666;">اضغط للتفاصيل</div>
             </div>
         </div>
 
-        <div class="card" onclick="showModal('جاكيت شتوي فاخر', '294 درهم', 'd24dbf3ebd288e1eb642aeaf6e189fbd.jpg')">
+        <div class="card" onclick="openMe('جاكيت شتوي', '294 درهم', 'd24dbf3ebd288e1eb642aeaf6e189fbd.jpg')">
             <img src="d24dbf3ebd288e1eb642aeaf6e189fbd.jpg">
             <div class="card-info">
                 <h3>جاكيت شتوي فاخر</h3>
                 <span class="price">294 درهم</span>
-                <div style="color: #666;">اضغط للتفاصيل</div>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="myModal">
+    <div id="popBox" class="modal">
         <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div class="modal-img-side">
-                <img id="modalImg" src="">
-            </div>
-            <div class="modal-text-side">
-                <h2 id="modalTitle">اسم المنتج</h2>
-                <div class="modal-price" id="modalPrice">000 درهم</div>
-                <p style="color: #666; line-height: 1.6;">هذا المنتج مصمم بجودة عالية وخامات ممتازة لضمان الراحة والأناقة. متوفر بجميع المقاسات.</p>
-                <br>
-                <a href="https://wa.me/212770940367" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> اطلب عبر واتساب الآن
-                </a>
-            </div>
+            <span class="close-btn" onclick="closeMe()">&times;</span>
+            <img id="popImg" src="">
+            <h2 id="popTitle"></h2>
+            <h3 id="popPrice" style="color: green;"></h3>
+            <p>هل تريد طلب هذا المنتج عبر الواتساب؟</p>
+            <a id="waLink" href="#" target="_blank" class="whatsapp-link">
+                <i class="fab fa-whatsapp"></i> إرسال الطلب الآن
+            </a>
         </div>
     </div>
 
     <script>
-        function showModal(title, price, image) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalPrice').innerText = price;
-            document.getElementById('modalImg').src = image;
-            document.getElementById('myModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // منع التمرير
+        function openMe(title, price, img) {
+            document.getElementById('popTitle').innerText = title;
+            document.getElementById('popPrice').innerText = price;
+            document.getElementById('popImg').src = img;
+            
+            // تجهيز نص الرسالة للواتساب
+            let message = "مرحباً متجر AD__bear، أريد طلب: " + title + " بسعر " + price;
+            let encodedMessage = encodeURIComponent(message);
+            document.getElementById('waLink').href = "https://wa.me/212770940367?text=" + encodedMessage;
+            
+            document.getElementById('popBox').style.display = 'flex';
         }
 
-        function closeModal() {
-            document.getElementById('myModal').style.display = 'none';
-            document.body.style.overflow = 'auto'; // إعادة التمرير
+        function closeMe() {
+            document.getElementById('popBox').style.display = 'none';
         }
 
-        // إغلاق عند الضغط خارج المربع
+        // إغلاق النافذة إذا ضغط المستخدم خارجها
         window.onclick = function(event) {
-            let modal = document.getElementById('myModal');
-            if (event.target == modal) closeModal();
+            if (event.target == document.getElementById('popBox')) {
+                closeMe();
+            }
         }
     </script>
 
 </body>
 </html>
-          
