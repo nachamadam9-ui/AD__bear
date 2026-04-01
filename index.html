@@ -5,36 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر AD__bear</title>
     <style>
-        body { font-family: sans-serif; background: #f4f4f4; text-align: center; padding: 20px; }
-        .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-        .card { background: white; border-radius: 15px; width: 280px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        img { width: 100%; border-radius: 10px; height: 300px; object-fit: cover; }
-        .price { color: #e44d26; font-size: 1.4rem; font-weight: bold; }
-        .btn { display: block; background: #25d366; color: white; padding: 10px; text-decoration: none; border-radius: 8px; margin-top: 10px; }
+        /* تغيير خلفية الموقع وألوان النصوص */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; }
+        header { background: #1a1a1a; color: white; padding: 20px; border-radius: 15px; margin-bottom: 30px; }
+        
+        /* تنسيق شبكة المنتجات */
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; }
+        
+        /* تنسيق بطاقة المنتج (الواجهة) */
+        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.3s; }
+        .card img { width: 100%; height: 350px; object-fit: cover; }
+        .info { padding: 20px; }
+        .price { color: #d32f2f; font-size: 1.6rem; font-weight: bold; margin: 10px 0; }
+        
+        /* زر الواتساب الجديد */
+        .btn { display: block; background: #25d366; color: white; padding: 12px; text-decoration: none; border-radius: 10px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: #1ebd59; }
     </style>
 </head>
 <body>
-    <h1>تشكيلة AD__bear الجديدة 🐻✨</h1>
-    <div class="grid">
+
+    <header>
+        <h1>متجر AD__bear 🐻✨</h1>
+        <p>أحدث صيحات الملابس العصرية بين يديك</p>
+    </header>
+
+    <div class="container">
         <div class="card">
-            <img src="Screenshot_20260401_124648.jpg">
-            <h3>منتج 1</h3>
-            <p class="price">179.99 درهم</p>
-            <a href="https://wa.me/212770940367" class="btn">اطلب عبر واتساب</a>
+            <img src="0e03061c982d648fbfa56f692930f03b.jpg" alt="منتج">
+            <div class="info">
+                <h3>قميص كاجوال أنيق</h3>
+                <p class="price">220 درهم</p>
+                <a href="https://wa.me/212770940367" class="btn">اطلب عبر واتساب</a>
+            </div>
         </div>
+
         <div class="card">
-            <img src="Screenshot_20260401_124739.jpg">
-            <h3>منتج 2</h3>
-            <p class="price">180 khod wahd wtani fabor درهم</p>
-            <a href="https://wa.me/212770940367" class="btn">اطلب عبر واتساب</a>
+            <img src="0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg" alt="منتج">
+            <div class="info">
+                <h3>هودي عصري</h3>
+                <p class="price">199 درهم</p>
+                <a href="https://wa.me/212770940367" class="btn">اطلب عبر واتساب</a>
+            </div>
         </div>
+
         <div class="card">
-            <img src="Screenshot_20260401_124814.jpg">
-            <h3>منتج 3</h3>
-            <p class="price">1 درهم</p>
-            <a href="https://wa.me/212770940367" class="btn">اطلب عبر واتساب</a>
+            <img src="d24dbf3ebd288e1eb642aeaf6e189fbd.jpg" alt="منتج">
+            <div class="info">
+                <h3>جاكيت شتوي فاخر</h3>
+                <p class="price">294 درهم </p>
+                <a href="https://wa.me/212770940367" class="btn">اطلب عبر واتساب</a>
+            </div>
         </div>
     </div>
+
 </body>
 </html>
-
