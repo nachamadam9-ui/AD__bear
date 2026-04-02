@@ -1,163 +1,127 @@
-
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD__bear Luxury | 🐻🍷</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        /* الألوان الملكية */
-        :root {
-            --black: #000000;
-            --dark-grey: #0f0f0f;
-            --royal-red: #600b1a; /* العنابي الفخم */
-            --white: #ffffff;
-            --border: #222;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AD__bear Luxury</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"><style>
+:root {
+  --bg:#000;
+  --card:#0d0d0d;
+  --royal:#6a040f;
+  --white:#fff;
+}
 
-        body { font-family: 'Cairo', sans-serif; background-color: var(--black); color: var(--white); margin: 0; padding: 0; }
-        
-        header { text-align: center; padding: 60px 20px; border-bottom: 2px solid var(--royal-red); }
-        header h1 { font-size: 2.5rem; margin: 0; letter-spacing: 2px; }
+body{
+  font-family:'Cairo',sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  margin:0;
+}
 
-        .container { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 25px; max-width: 1200px; margin: auto; padding: 40px 20px; 
-        }
+header{
+  text-align:center;
+  padding:40px 20px;
+  border-bottom:2px solid var(--royal);
+}
 
-        /* البطاقة */
-        .card { 
-            background: var(--dark-grey); border: 1px solid var(--border);
-            border-radius: 15px; overflow: hidden; cursor: pointer; transition: 0.3s;
-        }
-        .card:hover { border-color: var(--royal-red); transform: translateY(-5px); }
-        
-        .img-box { width: 100%; height: 350px; background: #000; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  padding:20px;
+  max-width:1200px;
+  margin:auto;
+}
 
-        .info { padding: 20px; text-align: center; }
-        .price { color: var(--royal-red); font-size: 1.6rem; font-weight: 900; display: block; margin: 10px 0; }
-        
-        .view-btn { 
-            background: transparent; border: 1px solid var(--royal-red); color: var(--white);
-            padding: 8px 20px; border-radius: 5px; font-weight: bold;
-        }
+.card{
+  background:var(--card);
+  border-radius:12px;
+  overflow:hidden;
+  transition:.3s;
+}
 
-        /* النافذة المنبثقة (المصلحة) */
-        .modal-overlay { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.95); z-index: 9999; 
-            display: none; align-items: center; justify-content: center;
-        }
+.card:hover{
+  transform:translateY(-5px);
+  border:1px solid var(--royal);
+}
 
-        .modal-box { 
-            background: #111; width: 90%; max-width: 500px; 
-            border-radius: 20px; border: 1px solid var(--royal-red);
-            padding: 20px; text-align: center; position: relative;
-        }
+.card img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+}
 
-        .modal-box img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
-        .modal-box h2 { margin: 10px 0; font-size: 1.8rem; }
-        .modal-box p { color: #aaa; margin-bottom: 20px; }
+.card-info{
+  padding:15px;
+  text-align:center;
+}
 
-        /* زر الواتساب الكبير */
-        .whatsapp-btn { 
-            background: var(--royal-red); color: white; text-decoration: none;
-            padding: 15px; display: block; border-radius: 10px; font-weight: 900;
-            font-size: 1.2rem; transition: 0.3s;
-        }
-        .whatsapp-btn:hover { background: #8a1026; }
+.price{
+  color:var(--royal);
+  font-weight:bold;
+  font-size:18px;
+}
 
-        .close-icon { position: absolute; top: 10px; left: 15px; font-size: 2rem; cursor: pointer; color: white; }
+.btn{
+  background:var(--royal);
+  border:none;
+  color:white;
+  padding:10px;
+  width:100%;
+  border-radius:6px;
+  cursor:pointer;
+}
 
-        @media (max-width: 600px) { .modal-box { width: 95%; padding: 15px; } }
-    </style>
-</head>
-<body>
+#modal{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
 
-    <header>
-        <h1>AD__bear Luxury</h1>
-        <p>التشكيلة الملكية | العنابي والأسود 🍷</p>
-    </header>
+#modal.active{
+  display:flex;
+}
 
-    <div class="container">
-        <div class="card" onclick="showPop('سترة Charcoal مضلعة', '250 DH', '1775131386342_edit_165168220411784.png', 'تصميم مضلع فاخر من الصوف الملكي.')">
-            <div class="img-box"><img src="1775131386342_edit_165168220411784.png"></div>
-            <div class="info">
-                <h3>Charcoal Ribbed</h3>
-                <span class="price">250 DH</span>
-                <button class="view-btn">عرض التفاصيل</button>
-            </div>
-        </div>
+.modal-box{
+  background:#111;
+  padding:20px;
+  border-radius:12px;
+  max-width:400px;
+  width:90%;
+  text-align:center;
+  animation:fade .3s ease;
+}
 
-        <div class="card" onclick="showPop('كنزة Cream المخططة', '250 DH', '1775131549809_edit_165190750270682.png', 'مزيج الكريمي والأسود، قطعة تفرض حضورها.')">
-            <div class="img-box"><img src="1775131549809_edit_165190750270682.png"></div>
-            <div class="info">
-                <h3>Cream Beige</h3>
-                <span class="price">250 DH</span>
-                <button class="view-btn">عرض التفاصيل</button>
-            </div>
-        </div>
+@keyframes fade{
+  from{opacity:0; transform:scale(.9)}
+  to{opacity:1; transform:scale(1)}
+}
 
-        <div class="card" onclick="showPop('سترة Navy الكلاسيكية', '250 DH', 'Screenshot_20260402_130701.jpg', 'اللون النيلي بلمسة ملكية غامقة.')">
-            <div class="img-box"><img src="Screenshot_20260402_130701.jpg"></div>
-            <div class="info">
-                <h3>Navy Classic</h3>
-                <span class="price">250 DH</span>
-                <button class="view-btn">عرض التفاصيل</button>
-            </div>
-        </div>
+.close{
+  position:absolute;
+  top:15px;
+  left:20px;
+  font-size:25px;
+  cursor:pointer;
+}
 
-        <div class="card" onclick="showPop('سترة Midnight Grey', '250 DH', 'Screenshot_20260402_130639_edit_165151901325644.jpg', 'رمادي داكن لإطلالة شتوية غامضة وفخمة.')">
-            <div class="img-box"><img src="Screenshot_20260402_130639_edit_165151901325644.jpg"></div>
-            <div class="info">
-                <h3>Dark Grey</h3>
-                <span class="price">250 DH</span>
-                <button class="view-btn">عرض التفاصيل</button>
-            </div>
-        </div>
-    </div>
+.wa{
+  display:block;
+  margin-top:15px;
+  background:#25d366;
+  padding:12px;
+  border-radius:8px;
+  text-decoration:none;
+  color:white;
+  font-weight:bold;
+}
 
-    <div id="popArea" class="modal-overlay">
-        <div class="modal-box">
-            <span class="close-icon" onclick="closePop()">&times;</span>
-            <img id="pImg" src="">
-            <h2 id="pTitle"></h2>
-            <div style="font-size: 1.8rem; font-weight: 900; color: var(--royal-red); margin-bottom: 10px;" id="pPrice"></div>
-            <p id="pDesc"></p>
-            <a id="waButton" href="#" target="_blank" class="whatsapp-btn">
-                <i class="fab fa-whatsapp"></i> طلب عبر واتساب الآن
-            </a>
-        </div>
-    </div>
-
-    <script>
-        function showPop(title, price, img, desc) {
-            document.getElementById('pTitle').innerText = title;
-            document.getElementById('pPrice').innerText = price;
-            document.getElementById('pDesc').innerText = desc;
-            document.getElementById('pImg').src = img;
-            
-            let link = "https://wa.me/212770940367?text=" + encodeURIComponent("مرحباً أريد طلب: " + title);
-            document.getElementById('waButton').href = link;
-            
-            document.getElementById('popArea').style.display = 'flex';
-        }
-
-        function closePop() {
-            document.getElementById('popArea').style.display = 'none';
-        }
-
-        // إغلاق عند الضغط خارج المربع
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('popArea')) {
-                closePop();
-            }
-        }
-    </script>
-
-</body>
-</html>
+</style></head><body><header>
+<h1>AD__bear Luxury 🐻🍷</h1>
+</header><div class="container" id="products"></div><div id="modal">
+<div class="modal-box">
+<span class="close"
