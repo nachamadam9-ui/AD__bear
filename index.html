@@ -3,379 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD__bear Luxury | Midnight Maroon Collection 🐻🍷</title>
-    
+    <title>AD__bear Luxury | Midnight Maroon 🐻🍷</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* الأساسيات والمتغيرات - لوحة "هيبة الملك" (The Royal Palette) */
         :root {
-            --bg-black: #000000; /* أسود داكن جداً خلفية */
-            --card-grey: #0a0a0a; /* رمادي داكن للبطاقات */
-            --border-muted: #1a1a1a; /* حدود رمادية خفيفة */
-            --text-main: #f5f5f5; /* أبيض دخاني للنصوص */
-            --text-muted: #888888; /* رمادي متوسط للتفاصيل */
-            
-            /* اللون الملكي الجديد: عنابي داكن جداً (Midnight Burgundy) */
-            --accent-color: #5d0f1b; 
-            --accent-glow: rgba(93, 15, 27, 0.4);
-            --price-color: #c41e3a; /* عنابي فاتح قليلاً للسعر */
+            --bg-black: #000000;
+            --card-grey: #0a0a0a;
+            --border-muted: #1a1a1a;
+            --text-main: #f5f5f5;
+            --accent-color: #5d0f1b; /* العنابي الملكي */
+            --price-color: #c41e3a;
         }
 
-        /* تنسيق عام */
-        * { box-sizing: border-box; transition: all 0.5s ease; outline: none; }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-black); margin: 0; color: var(--text-main); }
+        
+        header { padding: 80px 20px; text-align: center; border-bottom: 1px solid var(--border-muted); }
+        header h1 { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; margin: 0; color: var(--text-main); }
 
-        body { 
-            font-family: 'Cairo', sans-serif; 
-            background-color: var(--bg-black); 
-            margin: 0; 
-            padding: 0;
-            min-height: 100vh;
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: auto; padding: 40px 20px; }
 
-        /* تنسيق الـ Header الزجاجي */
-        header { 
-            background: rgba(0, 0, 0, 0.7); 
-            backdrop-filter: blur(10px);
-            padding: 80px 20px; 
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            border-bottom: 1px solid var(--border-muted);
-        }
-
-        header h1 { 
-            margin: 0; 
-            font-size: 3.5rem; 
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            letter-spacing: -3px;
-            color: var(--text-main);
-            text-shadow: 0 4px 15px rgba(255,255,255,0.1);
-        }
-
-        header p { 
-            color: var(--text-muted); 
-            font-size: 1.3rem; 
-            margin-top: 15px; 
-            font-weight: 400; 
-            letter-spacing: 1px;
-        }
-
-        .container { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 40px; 
-            max-width: 1300px; 
-            margin: 0 auto;
-            padding: 60px 20px 100px;
-        }
-
-        /* تنسيق بطاقة المنتج الفاخرة */
+        /* البطاقات */
         .card { 
-            background: var(--card-grey); 
-            border-radius: 30px; 
-            overflow: hidden; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-            cursor: pointer;
-            position: relative;
-            border: 1px solid var(--border-muted);
-            will-change: transform;
+            background: var(--card-grey); border-radius: 20px; overflow: hidden; 
+            border: 1px solid var(--border-muted); cursor: pointer; transition: 0.4s;
         }
-
-        .card:hover { 
-            transform: translateY(-20px) scale(1.02); 
-            box-shadow: 0 25px 60px var(--accent-glow);
-            border-color: #333;
-        }
-
-        .image-container {
-            width: 100%;
-            height: 420px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* تأثير Grayscale بلمسة عصرية */
-        .card img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.6s ease;
-            filter: grayscale(1); /* الصورة رمادية في البداية */
-        }
-
-        .card:hover img { 
-            transform: scale(1.1);
-            filter: grayscale(0); /* الألوان تعود عند الهوفر */
-        }
-
-        .info { 
-            padding: 30px; 
-            text-align: center; 
-            position: relative;
-        }
+        .card:hover { transform: translateY(-10px); border-color: var(--accent-color); }
         
-        .info h3 { 
-            margin: 0; 
-            color: var(--text-main); 
-            font-size: 1.6rem;
-            font-weight: 700;
-        }
+        .img-box { width: 100%; height: 400px; overflow: hidden; }
+        .card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: 0.5s; }
+        .card:hover img { filter: grayscale(0); transform: scale(1.05); }
 
-        /* تباين السعر العنابي الفاخر */
-        .price { 
-            color: var(--price-color); 
-            font-size: 2rem; 
-            font-weight: 900; 
-            font-family: 'Montserrat', sans-serif;
-            margin: 15px 0;
-            display: block;
-        }
+        .info { padding: 25px; text-align: center; }
+        .price { color: var(--price-color); font-size: 1.8rem; font-weight: 900; display: block; margin: 10px 0; }
+        .btn-view { border: 1px solid #444; padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; }
 
-        .card .btn-fake {
-            background: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--text-main);
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            display: inline-flex; align-items: center; gap: 10px;
-            font-size: 0.9rem;
-        }
-
-        .card:hover .btn-fake {
-            background: var(--text-main);
-            color: var(--body-bg);
-        }
-
-        /* --- واجهة عرض المنتج الكاملة (Product Showcase Modal) --- */
-        .product-modal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
+        /* النافذة المنبثقة المصلحة */
+        .modal { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.95); z-index: 10000; 
             display: none; align-items: center; justify-content: center;
+            backdrop-filter: blur(15px);
         }
+        .modal.active { display: flex; }
 
-        .product-modal.active { display: flex; }
-
-        .modal-content {
-            background: #fff;
-            color: #000;
-            width: 90%; max-width: 1100px;
-            border-radius: 40px;
-            overflow: hidden;
-            display: flex;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
-            position: relative;
-            transform: scale(0.9);
-            animation: fadeIn 0.4s ease forwards;
+        .modal-content { 
+            background: #fff; color: #000; width: 90%; max-width: 1000px; 
+            border-radius: 30px; display: flex; flex-wrap: wrap; overflow: hidden;
+            position: relative; animation: zoom 0.3s ease;
         }
+        @keyframes zoom { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        .product-modal.active .modal-content { transform: scale(1); }
+        .modal-left { flex: 1.2; min-width: 300px; background: #f0f0f0; }
+        .modal-left img { width: 100%; height: 100%; object-fit: cover; max-height: 600px; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-
-        .close-modal {
-            position: absolute;
-            top: 25px; left: 25px;
-            background: rgba(0,0,0,0.1);
-            color: #000;
-            width: 50px; height: 50px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; cursor: pointer;
-            z-index: 10;
-        }
-        .close-modal:hover { background: #000; color: #fff; }
-
-        /* يمين المودال (الصور) */
-        .modal-gallery { flex: 1.2; background: #f9f9f9; padding: 20px; }
-        .main-modal-img { width: 100%; height: 100%; object-fit: cover; border-radius: 25px; }
-
-        /* يسار المودال (التفاصيل) */
-        .modal-details { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; text-align: right;}
-        .modal-details h2 { font-size: 2.8rem; margin: 0; color: #000; border-bottom: 2px solid #ddd; padding-bottom: 15px; display: inline-block;}
+        .modal-right { flex: 1; min-width: 300px; padding: 40px; text-align: right; display: flex; flex-direction: column; justify-content: center; }
+        .modal-price { color: var(--price-color); font-size: 2.5rem; font-weight: 900; margin: 15px 0; }
         
-        /* تباين السعر في المودال */
-        .modal-details .modal-price { color: var(--price-color); font-size: 3rem; font-weight: 900; margin: 20px 0; font-family: 'Montserrat', sans-serif; }
-        
-        .modal-details p.desc { color: #666; font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; }
-        
-        /* خيارات المقاس المونوكروم */
-        .size-picker { margin-bottom: 40px; }
-        .size-picker h4 { margin-bottom: 10px; color: #333; }
-        .sizes { display: flex; gap: 15px; justify-content: flex-end;}
-        .size-btn { 
-            width: 60px; height: 60px; border-radius: 15px; 
-            border: 2px solid #ddd; background: #fff;
-            color: #333; font-weight: bold; cursor: pointer; font-family: 'Montserrat', sans-serif;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .size-btn:hover, .size-btn.active { border-color: #000; background: #000; color: #fff; }
-
-        /* زر الواتساب العنابي الفاخر */
-        .modal-details .btn-final { 
-            display: flex; align-items: center; justify-content: center; gap: 15px;
-            background: var(--accent-color); 
-            color: white; 
-            padding: 20px; 
-            text-decoration: none; 
-            border-radius: 20px; 
-            font-weight: 900; 
-            font-size: 1.3rem;
-            box-shadow: 0 10px 30px var(--accent-glow);
-        }
-        .modal-details .btn-final:hover { 
-            transform: scale(1.05);
-            background: #7a1524; /* عنابي فاتح قليلاً عند الهوفر */
-            box-shadow: 0 15px 40px var(--accent-glow);
+        .btn-wa { 
+            background: var(--accent-color); color: #fff; padding: 18px; 
+            text-decoration: none; border-radius: 15px; font-weight: 900; 
+            display: flex; align-items: center; justify-content: center; gap: 10px;
         }
 
-        .modal-details .btn-final i { font-size: 1.6rem; }
+        .close { position: absolute; top: 20px; left: 20px; font-size: 2rem; cursor: pointer; color: #000; z-index: 100; }
 
-        /* تذييل الصفحة */
-        footer { text-align: center; padding: 40px; color: #444; font-size: 0.9rem; border-top: 1px solid var(--border-muted); margin-top: auto;}
-
-        /* تجاوب للموبايل */
-        @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; letter-spacing: -1px;}
-            .modal-content { flex-direction: column; height: auto; overflow-y: auto; }
-            .modal-gallery { height: 400px; }
-            .modal-details { padding: 30px; text-align: center; }
-            .sizes { justify-content: center; }
-            .close-modal { top: 15px; left: 15px; background: #fff; }
-        }
+        @media (max-width: 768px) { .modal-content { flex-direction: column; height: 90vh; overflow-y: auto; } }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>AD__bear Luxury 🐻🍷</h1>
-        <p>التشكيلة الحصرية. تصميم Midnight Maroon للفخامة الملكية.</p>
+        <h1>AD__bear Luxury</h1>
+        <p>تصميم مخصص بلمسات العنابي الملكي 🐻🍷</p>
     </header>
 
     <div class="container">
-        
-        <div class="card" onclick="openProduct('سترة Charcoal الفاخرة', '250 DH', '1775131386342_edit_165168220411784.png', 'صوف ثقيل فاخر، يتميز بشعار الدب الملكي وتصميم كلاسيكي.')">
-            <div class="image-container">
-                <img src="1775131386342_edit_165168220411784.png" alt="1578">
-            </div>
+        <div class="card" onclick="showProduct('سترة Charcoal مضلعة', '250 DH', '1775131386342_edit_165168220411784.png', 'تصميم مضلع عصري من الصوف الفاخر، يجمع بين الدفء والأناقة.')">
+            <div class="img-box"><img src="1775131386342_edit_165168220411784.png"></div>
             <div class="info">
                 <h3>Charcoal Ribbed</h3>
                 <span class="price">250 DH</span>
-                <div class="btn-fake"><i class="fas fa-search"></i> عرض التفاصيل</div>
+                <div class="btn-view">عرض المزيد</div>
             </div>
         </div>
 
-        <div class="card" onclick="openProduct('كنزة Cream المخططة', '250 DH', '1775131549809_edit_165190750270682.png', 'تصميم كلاسيكي مريح وأنيق، يجمع بين الكريمي والنيلي.')">
-            <div class="image-container">
-                <img src="1775131549809_edit_165190750270682.png" alt="1579">
-            </div>
+        <div class="card" onclick="showProduct('كنزة Cream المخططة', '250 DH', '1775131549809_edit_165190750270682.png', 'خطوط كلاسيكية بلمسة عصرية، القطعة الأكثر طلباً لهذا الموسم.')">
+            <div class="img-box"><img src="1775131549809_edit_165190750270682.png"></div>
             <div class="info">
                 <h3>Cream Beige</h3>
                 <span class="price">250 DH</span>
-                <div class="btn-fake"><i class="fas fa-search"></i> عرض التفاصيل</div>
+                <div class="btn-view">عرض المزيد</div>
             </div>
         </div>
 
-        <div class="card" onclick="openProduct('سترة Navy الملكية', '250 DH', 'Screenshot_20260402_130701.jpg', 'تصميم نيلي بلمسة عصرية وتفاصيل دقيقة، صوف 100%.')">
-            <div class="image-container">
-                <img src="Screenshot_20260402_130701.jpg" alt="1576">
-            </div>
+        <div class="card" onclick="showProduct('سترة Navy الكلاسيكية', '250 DH', 'Screenshot_20260402_130701.jpg', 'اللون النيلي الملكي بنسيج صوف طبيعي 100%.')">
+            <div class="img-box"><img src="Screenshot_20260402_130701.jpg"></div>
             <div class="info">
                 <h3>Navy Classic</h3>
                 <span class="price">250 DH</span>
-                <div class="btn-fake"><i class="fas fa-search"></i> عرض التفاصيل</div>
+                <div class="btn-view">عرض المزيد</div>
             </div>
         </div>
 
-        <div class="card" onclick="openProduct('سترة Grey الشتوية', '250 DH', 'Screenshot_20260402_130639_edit_165151901325644.jpg', 'رمادي فخم لإطلالة مميزة ودفء لا مثيل له في الشتاء.')">
-            <div class="image-box"><img src="Screenshot_20260402_130639_edit_165151901325644.jpg"></div>
-            <div class="card-info">
+        <div class="card" onclick="showProduct('سترة Midnight Grey', '250 DH', 'Screenshot_20260402_130639_edit_165151901325644.jpg', 'رمادي داكن فخم، قطعة أساسية في خزانة كل رجل شتوي.')">
+            <div class="img-box"><img src="Screenshot_20260402_130639_edit_165151901325644.jpg"></div>
+            <div class="info">
                 <h3>Dark Grey</h3>
                 <span class="price">250 DH</span>
-                <div class="btn-fake"><i class="fas fa-search"></i> عرض التفاصيل</div>
+                <div class="btn-view">عرض المزيد</div>
             </div>
         </div>
     </div>
 
-    <div class="product-modal" id="productModal">
+    <div class="modal" id="pModal">
         <div class="modal-content">
-            <div class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></div>
-            
-            <div class="modal-gallery">
-                <img src="" alt="Main Image" class="main-modal-img" id="modalMainImg">
+            <span class="close" onclick="hideProduct()">&times;</span>
+            <div class="modal-left">
+                <img id="mImg" src="">
             </div>
-
-            <div class="modal-details">
-                <h2 id="modalTitle">اسم المنتج</h2>
-                <div class="modal-price" id="modalPrice">000 DH</div>
-                <p class="desc" id="modalDesc">وصف للمنتج يظهر هنا بشكل مفصل وجذاب للمستخدمين.</p>
-                
-                <div class="size-picker">
-                    <h4>اختر المقاس:</h4>
-                    <div class="sizes">
-                        <div class="size-btn" onclick="selectSize(this)">S</div>
-                        <div class="size-btn active" onclick="selectSize(this)">M</div>
-                        <div class="size-btn" onclick="selectSize(this)">L</div>
-                        <div class="size-btn" onclick="selectSize(this)">XL</div>
-                    </div>
-                </div>
-
-                <a href="https://wa.me/212770940367" class="btn-final" target="_blank" id="waLink">
-                    <i class="fab fa-whatsapp"></i> إتمام الطلب عبر واتساب الآن
+            <div class="modal-right">
+                <h2 id="mTitle"></h2>
+                <div class="modal-price" id="mPrice"></div>
+                <p id="mDesc" style="color: #666;"></p>
+                <a id="waLink" href="#" target="_blank" class="btn-wa">
+                    <i class="fab fa-whatsapp"></i> اطلب الآن عبر واتساب
                 </a>
             </div>
         </div>
     </div>
 
-    <footer>
-        جميع الحقوق محفوظة لمتجر AD__bear &copy; 2026 | مبرمج بواسطة الذكاء الاصطناعي
-    </footer>
-
     <script>
-        const modal = document.getElementById('productModal');
-        const mainImg = document.getElementById('modalMainImg');
-        const waLink = document.getElementById('waLink');
+        const modal = document.getElementById('pModal');
 
-        // وظيفة فتح واجهة المنتج ديناميكياً
-        function openProduct(title, price, imgSrc, desc) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalPrice').innerText = price;
-            document.getElementById('modalDesc').innerText = desc;
-            mainImg.src = imgSrc;
-
-            // تجهيز نص الرسالة للواتساب
-            let message = "مرحباً متجر AD__bear، أريد طلب: " + title + " بسعر " + price;
-            let encodedMessage = encodeURIComponent(message);
-            waLink.href = "https://wa.me/212770940367?text=" + encodedMessage;
-
+        function showProduct(title, price, img, desc) {
+            document.getElementById('mTitle').innerText = title;
+            document.getElementById('mPrice').innerText = price;
+            document.getElementById('mDesc').innerText = desc;
+            document.getElementById('mImg').src = img;
+            
+            let message = "مرحباً AD__bear، أريد طلب: " + title;
+            document.getElementById('waLink').href = "https://wa.me/212770940367?text=" + encodeURIComponent(message);
+            
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+            document.body.style.overflow = 'hidden';
         }
 
-        // وظيفة إغلاق الواجهة
-        function closeModal() {
+        function hideProduct() {
             modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // إعادة التمرير
+            document.body.style.overflow = 'auto';
         }
 
-        // إغلاق الواجهة عند الضغط خارج المحتوى
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        // وظيفة اختيار المقاس
-        function selectSize(elm) {
-            const sizeBtns = document.querySelectorAll('.size-btn');
-            sizeBtns.forEach(b => b.classList.remove('active'));
-            elm.classList.add('active');
-        }
-    </script>
-
-</body>
-</html>
+        window.onclick = function(e) {
+            if (
