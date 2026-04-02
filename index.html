@@ -3,159 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD__bear Luxury Knitwear | Stealth Collection 🐻</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <title>AD__bear Luxury | Black & Grey 🐻</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* الأساسيات والمتغيرات - لوحة مونوكروم (Monochrome Palette) */
+        /* لوحة ألوان رمادية وأسود فقط */
         :root {
-            --primary: #0a0a0a; /* أسود غامق جداً */
-            --accent: #222222; /* رمادي غامق جداً للتأثيرات */
-            --accent-glow: rgba(255, 255, 255, 0.1);
-            --text-main: #f5f5f5; /* أبيض دخاني للنصوص */
-            --text-muted: #888888; /* رمادي متوسط */
-            --card-bg: #0a0a0a;
-            --body-bg: #050505; /* أسود داكن */
-            --card-border: #1a1a1a;
-            --whatsapp-bg: #f5f5f5; /* خلفية زر الواتساب الرمادية */
-            --whatsapp-text: #050505; /* نص زر الواتساب الداكن */
+            --bg-black: #000000;
+            --card-grey: #121212;
+            --text-white: #ffffff;
+            --text-grey: #a0a0a0;
+            --border-grey: #333333;
         }
-
-        /* تنسيق عام */
-        * { box-sizing: border-box; transition: all 0.5s ease; outline: none; }
 
         body { 
             font-family: 'Cairo', sans-serif; 
-            background-color: var(--body-bg); 
-            margin: 0; 
-            padding: 0;
-            min-height: 100vh;
-            color: var(--text-main);
-            overflow-x: hidden;
+            background-color: var(--bg-black); 
+            color: var(--text-white); 
+            margin: 0; padding: 0;
         }
 
-        /* تنسيق الـ Header الغامق */
         header { 
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); 
-            padding: 80px 20px; 
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            border-bottom: 1px solid #1a1a1a;
+            text-align: center; padding: 60px 20px; 
+            border-bottom: 1px solid var(--border-grey);
+            background: #050505;
         }
 
-        header h1 { 
-            margin: 0; 
-            font-size: 4rem; 
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            letter-spacing: -3px;
-            color: var(--text-main);
-            text-shadow: 0 4px 15px rgba(255,255,255,0.1);
-        }
-
-        header p { 
-            color: var(--text-muted); 
-            font-size: 1.3rem; 
-            margin-top: 20px; 
-            font-weight: 400; 
-            letter-spacing: 1px;
-        }
+        header h1 { font-size: 2.8rem; margin: 0; letter-spacing: 2px; }
+        header p { color: var(--text-grey); margin-top: 10px; }
 
         .container { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 40px; 
-            max-width: 1300px; 
-            margin: 0 auto;
-            padding: 60px 20px 100px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; max-width: 1200px; margin: auto; padding: 40px 20px;
         }
 
-        /* تنسيق بطاقة المنتج المونوكروم */
+        /* البطاقات */
         .card { 
-            background: var(--card-bg); 
-            border-radius: 30px; 
+            background: var(--card-grey); 
+            border-radius: 15px; 
             overflow: hidden; 
-            border: 1px solid var(--card-border);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            border: 1px solid var(--border-grey);
+            transition: 0.3s;
             cursor: pointer;
-            position: relative;
-            will-change: transform;
         }
 
-        .card:hover { 
-            transform: translateY(-20px) scale(1.02); 
-            box-shadow: 0 25px 60px var(--accent-glow);
-            border-color: #333;
-        }
-
-        .image-container {
-            width: 100%;
-            height: 420px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* تأثير Grayscale بلمسة عصرية */
-        .card img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.6s ease;
-            filter: grayscale(1); /* الصورة رمادية في البداية */
-        }
-
-        .card:hover img { 
-            transform: scale(1.1);
-            filter: grayscale(0); /* الألوان تعود عند الهوفر */
-        }
-
-        .info { 
-            padding: 30px; 
-            text-align: center; 
-            position: relative;
-        }
+        .card:hover { border-color: var(--text-white); transform: translateY(-5px); }
         
-        .info h3 { 
-            margin: 0; 
-            color: var(--text-main); 
-            font-size: 1.6rem;
-            font-weight: 700;
-        }
+        .image-box { width: 100%; height: 380px; background: #1a1a1a; }
+        .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        .price { 
-            color: var(--text-main); 
-            font-size: 2rem; 
-            font-weight: 900; 
-            font-family: 'Montserrat', sans-serif;
-            margin: 15px 0;
-            display: block;
-        }
+        .card-info { padding: 20px; text-align: center; }
+        .card-info h3 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--text-white); }
+        .price { font-size: 1.5rem; font-weight: 900; color: var(--text-white); }
 
-        .card .btn-fake {
-            background: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--text-main);
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            display: inline-flex; align-items: center; gap: 10px;
-            font-size: 0.9rem;
-        }
-
-        .card:hover .btn-fake {
-            background: var(--text-main);
-            color: var(--body-bg);
-        }
-
-        /* --- واجهة عرض المنتج الكاملة (Product Showcase Modal) --- */
-        .product-modal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
+        /* النافذة المنبثقة */
+        .modal { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.9); z-index: 10000; 
             display: none; align-items: center; justify-content: center;
         }
 
-        .product-modal.active { display: flex; }
+        .modal-content { 
+            background: #1a1a1a; color: white; width: 90%; max-width: 800px; 
+            border-radius: 20px; display: flex; flex-wrap: wrap; overflow: hidden;
+            border: 1px solid var(--border-grey); position: relative;
+        }
+
+        .modal-left { flex: 1; min-width: 300px; height: 400px; }
+        .modal-left img { width: 100%; height: 100%; object-fit: cover; }
+
+        .modal-right { flex: 1; min-width: 300px; padding: 40px; text-align: right; }
+        
+        .btn-order { 
+            background: #ffffff; color: #000000; padding: 15px; 
+            text-decoration: none; border-radius: 10px; font-weight: 900; 
+            display: block; text-align: center; margin-top: 25px;
+            transition: 0.3s;
+        }
+        .btn-order:hover { background: #cccccc; }
+
+        .close-modal { position: absolute; top: 15px; left: 15px; font-size: 2rem; cursor: pointer; color: white; }
+
+        @media (max-width: 768px) {
+            .modal-content { flex-direction: column; height: 80vh; overflow-y: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AD__bear 🐻</h1>
+        <p>التشكيلة الفاخرة | صوف طبيعي 100%</p>
+    </header>
+
+    <div class="container">
+        <div class="card" onclick="openMe('سترة Charcoal', '250 DH', '1578.jpg', 'تصميم رمادي فخم بياقة دائرية وشعار الدب المذهب.')">
+            <div class="image-box"><img src="1578.jpg"></div>
+            <div class="card-info">
+                <h3>Charcoal Stripe</h3>
+                <span class="price">250 DH</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="openMe('كنزة Cream', '250 DH', '1579.jpg', 'مزيج رائع بين البيج الكريمي والخطوط الداكنة.')">
+            <div class="image-box"><img src="1579.jpg"></div>
+            <div class="card-info">
+                <h3>Cream Beige</h3>
+                <span class="price">250 DH</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="openMe('سترة Navy Classic', '250 DH', '1576.jpg', 'خطوط أفقية متناسقة تمنحك مظهراً جذاباً.')">
+            <div class="image-box"><img src="1576.jpg"></div>
+            <div class="card-info">
+                <h3>Navy Classic</h3>
+                <span class="price">250 DH</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="openMe('سترة Dark Grey', '250 DH', '1580.jpg', 'الرمادي الداكن لإطلالة شتوية غامضة وأنيقة.')">
+            <div class="image-box"><img src="1580.jpg"></div>
+            <div class="card-info">
+                <h3>Dark Grey</h3>
+                <span class="price">250 DH</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="popWindow">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeMe()">&times;</span>
+            <div class="modal-left">
+                <img id="popImg" src="">
+            </div>
+            <div class="modal-right">
+                <h2 id="popTitle"></h2>
+                <div style="font-size: 2rem; font-weight: 900; margin-bottom: 10px;" id="popPrice"></div>
+                <p id="popDesc" style="color: #bbb;"></p>
+                <a id="waButton" href="#" target="_blank" class="btn-order">
+                    <i class="fab fa-whatsapp"></i> طلب عبر الواتساب
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openMe(title, price, img, desc) {
+            document.getElementById('popTitle').innerText = title;
+            document.getElementById('popPrice').innerText = price;
+            document.getElementById('popDesc').innerText = desc;
+            document.getElementById('popImg').src = img;
+            
+            let msg = "مرحباً AD__bear، أريد طلب: " + title;
+            document.getElementById('waButton').href = "https://wa.me/212770940367?text=" + encodeURIComponent(msg);
+            
+            document.getElementById('popWindow').style.display = 'flex';
+        }
+
+        function closeMe() {
+            document.getElementById('popWindow').style.display = 'none';
+        }
+
+        window.onclick = function(e) {
+            if (e.target == document.getElementById('popWindow')) closeMe();
+        }
+    </script>
+
+</body>
+</html>
