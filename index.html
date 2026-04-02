@@ -28,25 +28,32 @@
         .card { 
             background: var(--card-grey); border-radius: 20px; overflow: hidden; 
             border: 1px solid var(--border-muted); cursor: pointer; transition: 0.4s;
+            position: relative;
         }
         .card:hover { transform: translateY(-10px); border-color: var(--accent-color); }
         
         .img-box { width: 100%; height: 400px; overflow: hidden; }
-        .card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: 0.5s; }
+        .card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: 0.5s; pointer-events: none; }
         .card:hover img { filter: grayscale(0); transform: scale(1.05); }
 
-        .info { padding: 25px; text-align: center; }
+        .info { padding: 25px; text-align: center; pointer-events: none; }
         .price { color: var(--price-color); font-size: 1.8rem; font-weight: 900; display: block; margin: 10px 0; }
-        .btn-view { border: 1px solid #444; padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; }
+        
+        /* زر عرض المزيد المعدل ليعمل كجزء من البطاقة */
+        .btn-view { 
+            border: 1px solid #444; padding: 10px 25px; border-radius: 50px; 
+            font-size: 0.9rem; display: inline-block; margin-top: 10px;
+            transition: 0.3s;
+        }
+        .card:hover .btn-view { background: var(--text-main); color: #000; border-color: var(--text-main); }
 
-        /* النافذة المنبثقة المصلحة */
+        /* النافذة المنبثقة */
         .modal { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0,0,0,0.95); z-index: 10000; 
             display: none; align-items: center; justify-content: center;
             backdrop-filter: blur(15px);
         }
-        .modal.active { display: flex; }
 
         .modal-content { 
             background: #fff; color: #000; width: 90%; max-width: 1000px; 
@@ -65,9 +72,10 @@
             background: var(--accent-color); color: #fff; padding: 18px; 
             text-decoration: none; border-radius: 15px; font-weight: 900; 
             display: flex; align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 10px 20px rgba(93, 15, 27, 0.3);
         }
 
-        .close { position: absolute; top: 20px; left: 20px; font-size: 2rem; cursor: pointer; color: #000; z-index: 100; }
+        .close { position: absolute; top: 20px; left: 20px; font-size: 2.5rem; cursor: pointer; color: #000; z-index: 100; font-weight: bold; }
 
         @media (max-width: 768px) { .modal-content { flex-direction: column; height: 90vh; overflow-y: auto; } }
     </style>
@@ -76,11 +84,11 @@
 
     <header>
         <h1>AD__bear Luxury</h1>
-        <p>تصميم مخصص بلمسات العنابي الملكي 🐻🍷</p>
+        <p>تصميم Midnight Maroon للفخامة الملكية 🐻🍷</p>
     </header>
 
     <div class="container">
-        <div class="card" onclick="showProduct('سترة Charcoal مضلعة', '250 DH', '1775131386342_edit_165168220411784.png', 'تصميم مضلع عصري من الصوف الفاخر، يجمع بين الدفء والأناقة.')">
+        <div class="card" onclick="openProduct('سترة Charcoal مضلعة', '250 DH', '1775131386342_edit_165168220411784.png', 'تصميم مضلع عصري من الصوف الفاخر، يجمع بين الدفء والأناقة الفائقة.')">
             <div class="img-box"><img src="1775131386342_edit_165168220411784.png"></div>
             <div class="info">
                 <h3>Charcoal Ribbed</h3>
@@ -89,7 +97,7 @@
             </div>
         </div>
 
-        <div class="card" onclick="showProduct('كنزة Cream المخططة', '250 DH', '1775131549809_edit_165190750270682.png', 'خطوط كلاسيكية بلمسة عصرية، القطعة الأكثر طلباً لهذا الموسم.')">
+        <div class="card" onclick="openProduct('كنزة Cream المخططة', '250 DH', '1775131549809_edit_165190750270682.png', 'خطوط كلاسيكية بلمسة عصرية، القطعة الأكثر طلباً لهذا الموسم لشتاء دافئ.')">
             <div class="img-box"><img src="1775131549809_edit_165190750270682.png"></div>
             <div class="info">
                 <h3>Cream Beige</h3>
@@ -98,7 +106,7 @@
             </div>
         </div>
 
-        <div class="card" onclick="showProduct('سترة Navy الكلاسيكية', '250 DH', 'Screenshot_20260402_130701.jpg', 'اللون النيلي الملكي بنسيج صوف طبيعي 100%.')">
+        <div class="card" onclick="openProduct('سترة Navy الكلاسيكية', '250 DH', 'Screenshot_20260402_130701.jpg', 'اللون النيلي الملكي بنسيج صوف طبيعي 100% لإطلالة لا تضاهى.')">
             <div class="img-box"><img src="Screenshot_20260402_130701.jpg"></div>
             <div class="info">
                 <h3>Navy Classic</h3>
@@ -107,7 +115,7 @@
             </div>
         </div>
 
-        <div class="card" onclick="showProduct('سترة Midnight Grey', '250 DH', 'Screenshot_20260402_130639_edit_165151901325644.jpg', 'رمادي داكن فخم، قطعة أساسية في خزانة كل رجل شتوي.')">
+        <div class="card" onclick="openProduct('سترة Midnight Grey', '250 DH', 'Screenshot_20260402_130639_edit_165151901325644.jpg', 'رمادي داكن فخم، قطعة أساسية تمنحك الهيبة في كل المناسبات.')">
             <div class="img-box"><img src="Screenshot_20260402_130639_edit_165151901325644.jpg"></div>
             <div class="info">
                 <h3>Dark Grey</h3>
@@ -117,16 +125,16 @@
         </div>
     </div>
 
-    <div class="modal" id="pModal">
+    <div class="modal" id="productModal">
         <div class="modal-content">
-            <span class="close" onclick="hideProduct()">&times;</span>
+            <span class="close" onclick="closeProduct()">&times;</span>
             <div class="modal-left">
-                <img id="mImg" src="">
+                <img id="modalImg" src="">
             </div>
             <div class="modal-right">
-                <h2 id="mTitle"></h2>
-                <div class="modal-price" id="mPrice"></div>
-                <p id="mDesc" style="color: #666;"></p>
+                <h2 id="modalTitle"></h2>
+                <div class="modal-price" id="modalPrice"></div>
+                <p id="modalDesc" style="color: #555; line-height: 1.6;"></p>
                 <a id="waLink" href="#" target="_blank" class="btn-wa">
                     <i class="fab fa-whatsapp"></i> اطلب الآن عبر واتساب
                 </a>
@@ -135,25 +143,31 @@
     </div>
 
     <script>
-        const modal = document.getElementById('pModal');
+        const modal = document.getElementById('productModal');
 
-        function showProduct(title, price, img, desc) {
-            document.getElementById('mTitle').innerText = title;
-            document.getElementById('mPrice').innerText = price;
-            document.getElementById('mDesc').innerText = desc;
-            document.getElementById('mImg').src = img;
+        function openProduct(title, price, img, desc) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalImg').src = img;
             
-            let message = "مرحباً AD__bear، أريد طلب: " + title;
+            let message = "مرحباً AD__bear، أريد طلب القطعة الفاخرة: " + title;
             document.getElementById('waLink').href = "https://wa.me/212770940367?text=" + encodeURIComponent(message);
             
-            modal.classList.add('active');
+            modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
 
-        function hideProduct() {
-            modal.classList.remove('active');
+        function closeProduct() {
+            modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
+        // إغلاق النافذة عند الضغط خارجها
         window.onclick = function(e) {
-            if (
+            if (e.target == modal) closeProduct();
+        }
+    </script>
+
+</body>
+</html>
