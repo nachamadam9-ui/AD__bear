@@ -1,172 +1,161 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD__bear Luxury | Midnight Maroon 🐻🍷</title>
+    <title>AD__bear Luxury | 🐻🍷</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+        /* الألوان الملكية */
         :root {
-            --bg: #000000;
-            --card-bg: #0a0a0a;
-            --accent: #5d0f1b; /* العنابي الملكي */
-            --accent-light: #c41e3a;
-            --text: #ffffff;
-            --border: #1a1a1a;
+            --black: #000000;
+            --dark-grey: #0f0f0f;
+            --royal-red: #600b1a; /* العنابي الفخم */
+            --white: #ffffff;
+            --border: #222;
         }
 
-        body { font-family: 'Cairo', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--black); color: var(--white); margin: 0; padding: 0; }
         
-        header { text-align: center; padding: 80px 20px; border-bottom: 1px solid var(--border); }
-        header h1 { font-size: 3rem; font-weight: 900; letter-spacing: 2px; margin: 0; }
+        header { text-align: center; padding: 60px 20px; border-bottom: 2px solid var(--royal-red); }
+        header h1 { font-size: 2.5rem; margin: 0; letter-spacing: 2px; }
 
         .container { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; max-width: 1200px; margin: auto; padding: 40px 20px; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; max-width: 1200px; margin: auto; padding: 40px 20px; 
         }
 
-        /* البطاقة ككتلة واحدة قابلة للضغط */
+        /* البطاقة */
         .card { 
-            background: var(--card-bg); border-radius: 20px; overflow: hidden; 
-            border: 1px solid var(--border); cursor: pointer; transition: 0.4s;
-            position: relative; text-decoration: none; color: inherit; display: block;
+            background: var(--dark-grey); border: 1px solid var(--border);
+            border-radius: 15px; overflow: hidden; cursor: pointer; transition: 0.3s;
         }
-        .card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(93, 15, 27, 0.2); }
+        .card:hover { border-color: var(--royal-red); transform: translateY(-5px); }
         
-        .img-box { width: 100%; height: 400px; overflow: hidden; background: #050505; }
-        .card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
-        .card:hover img { filter: grayscale(0); transform: scale(1.05); }
+        .img-box { width: 100%; height: 350px; background: #000; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
 
-        .info { padding: 25px; text-align: center; }
-        .price { color: var(--accent-light); font-size: 1.8rem; font-weight: 900; display: block; margin: 10px 0; }
+        .info { padding: 20px; text-align: center; }
+        .price { color: var(--royal-red); font-size: 1.6rem; font-weight: 900; display: block; margin: 10px 0; }
         
-        .btn-style { 
-            border: 1px solid #333; padding: 10px 25px; border-radius: 50px; 
-            font-size: 0.9rem; display: inline-block; transition: 0.3s;
+        .view-btn { 
+            background: transparent; border: 1px solid var(--royal-red); color: var(--white);
+            padding: 8px 20px; border-radius: 5px; font-weight: bold;
         }
-        .card:hover .btn-style { background: var(--text); color: #000; }
 
-        /* النافذة المنبثقة */
-        .modal { 
+        /* النافذة المنبثقة (المصلحة) */
+        .modal-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.95); z-index: 10000; 
+            background: rgba(0,0,0,0.95); z-index: 9999; 
             display: none; align-items: center; justify-content: center;
-            backdrop-filter: blur(10px);
         }
 
-        .modal-content { 
-            background: #fff; color: #000; width: 90%; max-width: 1000px; 
-            border-radius: 25px; display: flex; flex-wrap: wrap; overflow: hidden;
-            position: relative; animation: pop 0.3s ease;
-        }
-        @keyframes pop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-        .modal-left { flex: 1.2; min-width: 300px; max-height: 600px; }
-        .modal-left img { width: 100%; height: 100%; object-fit: cover; }
-
-        .modal-right { flex: 1; min-width: 300px; padding: 40px; text-align: right; display: flex; flex-direction: column; justify-content: center; }
-        .modal-price { color: var(--accent-light); font-size: 2.8rem; font-weight: 900; margin: 10px 0; }
-        
-        .btn-wa { 
-            background: var(--accent); color: #fff; padding: 20px; 
-            text-decoration: none; border-radius: 15px; font-weight: 900; 
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            font-size: 1.2rem;
+        .modal-box { 
+            background: #111; width: 90%; max-width: 500px; 
+            border-radius: 20px; border: 1px solid var(--royal-red);
+            padding: 20px; text-align: center; position: relative;
         }
 
-        .close-btn { position: absolute; top: 20px; left: 20px; font-size: 2.5rem; cursor: pointer; color: #000; z-index: 100; }
+        .modal-box img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+        .modal-box h2 { margin: 10px 0; font-size: 1.8rem; }
+        .modal-box p { color: #aaa; margin-bottom: 20px; }
 
-        @media (max-width: 768px) { .modal-content { flex-direction: column; height: 90vh; overflow-y: auto; } }
+        /* زر الواتساب الكبير */
+        .whatsapp-btn { 
+            background: var(--royal-red); color: white; text-decoration: none;
+            padding: 15px; display: block; border-radius: 10px; font-weight: 900;
+            font-size: 1.2rem; transition: 0.3s;
+        }
+        .whatsapp-btn:hover { background: #8a1026; }
+
+        .close-icon { position: absolute; top: 10px; left: 15px; font-size: 2rem; cursor: pointer; color: white; }
+
+        @media (max-width: 600px) { .modal-box { width: 95%; padding: 15px; } }
     </style>
 </head>
 <body>
 
     <header>
         <h1>AD__bear Luxury</h1>
-        <p>مجموعة الخريف والشتاء | هيبة العنابي والأسود 🍷</p>
+        <p>التشكيلة الملكية | العنابي والأسود 🍷</p>
     </header>
 
     <div class="container">
-        <div class="card" onclick="openProduct('سترة Charcoal مضلعة', '250 DH', '1775131386342_edit_165168220411784.png', 'تصميم مضلع فاخر من أجود أنواع الصوف، يمنحك الهيبة والدفء.')">
+        <div class="card" onclick="showPop('سترة Charcoal مضلعة', '250 DH', '1775131386342_edit_165168220411784.png', 'تصميم مضلع فاخر من الصوف الملكي.')">
             <div class="img-box"><img src="1775131386342_edit_165168220411784.png"></div>
             <div class="info">
                 <h3>Charcoal Ribbed</h3>
                 <span class="price">250 DH</span>
-                <div class="btn-style">عرض التفاصيل</div>
+                <button class="view-btn">عرض التفاصيل</button>
             </div>
         </div>
 
-        <div class="card" onclick="openProduct('كنزة Cream المخططة', '250 DH', '1775131549809_edit_165190750270682.png', 'مزيج الكريمي والأسود، قطعة كلاسيكية تفرض حضورها.')">
+        <div class="card" onclick="showPop('كنزة Cream المخططة', '250 DH', '1775131549809_edit_165190750270682.png', 'مزيج الكريمي والأسود، قطعة تفرض حضورها.')">
             <div class="img-box"><img src="1775131549809_edit_165190750270682.png"></div>
             <div class="info">
                 <h3>Cream Beige</h3>
                 <span class="price">250 DH</span>
-                <div class="btn-style">عرض التفاصيل</div>
+                <button class="view-btn">عرض التفاصيل</button>
             </div>
         </div>
 
-        <div class="card" onclick="openProduct('سترة Navy الكلاسيكية', '250 DH', 'Screenshot_20260402_130701.jpg', 'اللون النيلي بلمسة ملكية غامقة، صوف 100%.')">
+        <div class="card" onclick="showPop('سترة Navy الكلاسيكية', '250 DH', 'Screenshot_20260402_130701.jpg', 'اللون النيلي بلمسة ملكية غامقة.')">
             <div class="img-box"><img src="Screenshot_20260402_130701.jpg"></div>
             <div class="info">
                 <h3>Navy Classic</h3>
                 <span class="price">250 DH</span>
-                <div class="btn-style">عرض التفاصيل</div>
+                <button class="view-btn">عرض التفاصيل</button>
             </div>
         </div>
 
-        <div class="card" onclick="openProduct('سترة Midnight Grey', '250 DH', 'Screenshot_20260402_130639_edit_165151901325644.jpg', 'رمادي داكن لإطلالة شتوية غامضة وفخمة.')">
+        <div class="card" onclick="showPop('سترة Midnight Grey', '250 DH', 'Screenshot_20260402_130639_edit_165151901325644.jpg', 'رمادي داكن لإطلالة شتوية غامضة وفخمة.')">
             <div class="img-box"><img src="Screenshot_20260402_130639_edit_165151901325644.jpg"></div>
             <div class="info">
                 <h3>Dark Grey</h3>
                 <span class="price">250 DH</span>
-                <div class="btn-style">عرض التفاصيل</div>
+                <button class="view-btn">عرض التفاصيل</button>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="modalArea">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeProduct()">&times;</span>
-            <div class="modal-left">
-                <img id="mImg" src="">
-            </div>
-            <div class="modal-right">
-                <h2 id="mTitle"></h2>
-                <div class="modal-price" id="mPrice"></div>
-                <p id="mDesc" style="color: #666; line-height: 1.6;"></p>
-                <a id="waLink" href="#" target="_blank" class="btn-wa">
-                    <i class="fab fa-whatsapp"></i> اطلب الآن عبر واتساب
-                </a>
-            </div>
+    <div id="popArea" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-icon" onclick="closePop()">&times;</span>
+            <img id="pImg" src="">
+            <h2 id="pTitle"></h2>
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--royal-red); margin-bottom: 10px;" id="pPrice"></div>
+            <p id="pDesc"></p>
+            <a id="waButton" href="#" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> طلب عبر واتساب الآن
+            </a>
         </div>
     </div>
 
     <script>
-        const modal = document.getElementById('modalArea');
-
-        function openProduct(title, price, img, desc) {
-            document.getElementById('mTitle').innerText = title;
-            document.getElementById('mPrice').innerText = price;
-            document.getElementById('mDesc').innerText = desc;
-            document.getElementById('mImg').src = img;
+        function showPop(title, price, img, desc) {
+            document.getElementById('pTitle').innerText = title;
+            document.getElementById('pPrice').innerText = price;
+            document.getElementById('pDesc').innerText = desc;
+            document.getElementById('pImg').src = img;
             
-            let text = "مرحباً متجر AD__bear، أريد طلب: " + title;
-            document.getElementById('waLink').href = "https://wa.me/212770940367?text=" + encodeURIComponent(text);
+            let link = "https://wa.me/212770940367?text=" + encodeURIComponent("مرحباً أريد طلب: " + title);
+            document.getElementById('waButton').href = link;
             
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+            document.getElementById('popArea').style.display = 'flex';
         }
 
-        function closeProduct() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+        function closePop() {
+            document.getElementById('popArea').style.display = 'none';
         }
 
-        // إغلاق عند الضغط في أي مكان بالخارج
+        // إغلاق عند الضغط خارج المربع
         window.onclick = function(event) {
-            if (event.target == modal) closeProduct();
+            if (event.target == document.getElementById('popArea')) {
+                closePop();
+            }
         }
     </script>
 
