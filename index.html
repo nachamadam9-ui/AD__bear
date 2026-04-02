@@ -3,179 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD__bear Luxury Knitwear 🐻</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>AD__bear Luxury Knitwear | Stealth Collection 🐻</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+        /* الأساسيات والمتغيرات - لوحة مونوكروم (Monochrome Palette) */
         :root {
-            --primary: #1a1a1a;
-            --accent: #d4af37; /* لون ذهبي للفخامة */
-            --whatsapp: #25d366;
-            --bg: #0f0f0f;
-            --card-bg: #1d1d1d;
+            --primary: #0a0a0a; /* أسود غامق جداً */
+            --accent: #222222; /* رمادي غامق جداً للتأثيرات */
+            --accent-glow: rgba(255, 255, 255, 0.1);
+            --text-main: #f5f5f5; /* أبيض دخاني للنصوص */
+            --text-muted: #888888; /* رمادي متوسط */
+            --card-bg: #0a0a0a;
+            --body-bg: #050505; /* أسود داكن */
+            --card-border: #1a1a1a;
+            --whatsapp-bg: #f5f5f5; /* خلفية زر الواتساب الرمادية */
+            --whatsapp-text: #050505; /* نص زر الواتساب الداكن */
         }
+
+        /* تنسيق عام */
+        * { box-sizing: border-box; transition: all 0.5s ease; outline: none; }
 
         body { 
             font-family: 'Cairo', sans-serif; 
-            background-color: var(--bg); 
-            color: white; margin: 0; padding: 0;
-            line-height: 1.6;
+            background-color: var(--body-bg); 
+            margin: 0; 
+            padding: 0;
+            min-height: 100vh;
+            color: var(--text-main);
+            overflow-x: hidden;
         }
 
+        /* تنسيق الـ Header الغامق */
         header { 
-            text-align: center; padding: 80px 20px; 
-            background: linear-gradient(to bottom, #1a1a1a, #0f0f0f);
-            border-bottom: 1px solid #333;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); 
+            padding: 80px 20px; 
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border-bottom: 1px solid #1a1a1a;
         }
 
-        header h1 { font-size: 3.5rem; margin: 0; font-weight: 900; letter-spacing: 2px; color: var(--accent); }
-        header p { opacity: 0.6; font-size: 1.2rem; margin-top: 10px; }
+        header h1 { 
+            margin: 0; 
+            font-size: 4rem; 
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            letter-spacing: -3px;
+            color: var(--text-main);
+            text-shadow: 0 4px 15px rgba(255,255,255,0.1);
+        }
+
+        header p { 
+            color: var(--text-muted); 
+            font-size: 1.3rem; 
+            margin-top: 20px; 
+            font-weight: 400; 
+            letter-spacing: 1px;
+        }
 
         .container { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 40px; max-width: 1300px; margin: auto; padding: 50px 20px;
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px; 
+            max-width: 1300px; 
+            margin: 0 auto;
+            padding: 60px 20px 100px;
         }
 
-        /* تنسيق البطاقة */
+        /* تنسيق بطاقة المنتج المونوكروم */
         .card { 
-            background: var(--card-bg); border-radius: 20px; overflow: hidden; 
-            cursor: pointer; transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 1px solid #222; position: relative;
+            background: var(--card-bg); 
+            border-radius: 30px; 
+            overflow: hidden; 
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            cursor: pointer;
+            position: relative;
+            will-change: transform;
         }
 
-        .card:hover { transform: translateY(-15px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .card:hover { 
+            transform: translateY(-20px) scale(1.02); 
+            box-shadow: 0 25px 60px var(--accent-glow);
+            border-color: #333;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 420px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* تأثير Grayscale بلمسة عصرية */
+        .card img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.6s ease;
+            filter: grayscale(1); /* الصورة رمادية في البداية */
+        }
+
+        .card:hover img { 
+            transform: scale(1.1);
+            filter: grayscale(0); /* الألوان تعود عند الهوفر */
+        }
+
+        .info { 
+            padding: 30px; 
+            text-align: center; 
+            position: relative;
+        }
         
-        .image-box { width: 100%; height: 450px; overflow: hidden; }
-        .card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
-        .card:hover img { transform: scale(1.1); }
+        .info h3 { 
+            margin: 0; 
+            color: var(--text-main); 
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
 
-        .card-info { padding: 25px; text-align: center; }
-        .card-info h3 { margin: 0; font-size: 1.4rem; color: #fff; }
-        .price { color: var(--accent); font-size: 1.8rem; font-weight: 900; display: block; margin: 10px 0; }
+        .price { 
+            color: var(--text-main); 
+            font-size: 2rem; 
+            font-weight: 900; 
+            font-family: 'Montserrat', sans-serif;
+            margin: 15px 0;
+            display: block;
+        }
 
-        /* النافذة المنبثقة (Modal) */
-        .modal { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.95); z-index: 10000; 
-            display: none; align-items: center; justify-content: center; padding: 20px;
+        .card .btn-fake {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-main);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .card:hover .btn-fake {
+            background: var(--text-main);
+            color: var(--body-bg);
+        }
+
+        /* --- واجهة عرض المنتج الكاملة (Product Showcase Modal) --- */
+        .product-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
             backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none; align-items: center; justify-content: center;
         }
 
-        .modal-content { 
-            background: #fff; color: #000; width: 100%; max-width: 1000px; 
-            border-radius: 30px; display: flex; flex-wrap: wrap; overflow: hidden;
-            animation: slideIn 0.4s ease-out;
-        }
-
-        @keyframes slideIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-
-        .modal-left { flex: 1; min-width: 300px; background: #f0f0f0; }
-        .modal-left img { width: 100%; height: 100%; object-fit: cover; max-height: 600px; }
-
-        .modal-right { flex: 1; min-width: 300px; padding: 50px; text-align: right; display: flex; flex-direction: column; justify-content: center; }
-        .modal-right h2 { font-size: 2.5rem; margin-top: 0; }
-        .modal-price { font-size: 2.8rem; font-weight: 900; color: #c41e3a; margin-bottom: 20px; }
-        .modal-desc { color: #555; font-size: 1.1rem; margin-bottom: 30px; }
-
-        .btn-order { 
-            background: var(--whatsapp); color: #fff; padding: 20px; 
-            text-decoration: none; border-radius: 15px; font-weight: 900; 
-            font-size: 1.3rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;
-            transition: 0.3s;
-        }
-        .btn-order:hover { transform: scale(1.05); background: #1ebd59; }
-
-        .close-modal { position: absolute; top: 20px; left: 20px; font-size: 2.5rem; cursor: pointer; color: white; }
-
-        @media (max-width: 768px) {
-            .modal-content { flex-direction: column; max-height: 90vh; overflow-y: auto; }
-            .modal-left { height: 350px; }
-            .modal-right { padding: 30px; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>AD__bear Luxury</h1>
-        <p>تشكيلة الصوف الفاخرة لعام 2026 🐻✨</p>
-    </header>
-
-    <div class="container">
-        <div class="card" onclick="openProduct('سترة Charcoal المخططة', '250 درهم', '1578.jpg', 'سترة صوفية ثقيلة بلون فحم داكن مع خطوط كلاسيكية، تتميز بشعار الدب الفاخر وتصميم يمنحك الدفء والأناقة.')">
-            <div class="image-box"><img src="1578.jpg"></div>
-            <div class="card-info">
-                <h3>Charcoal & Black Stripe</h3>
-                <span class="price">250 درهم</span>
-            </div>
-        </div>
-
-        <div class="card" onclick="openProduct('كنزة Cream Beige المخططة', '250 درهم', '1579.jpg', 'تصميم عصري يجمع بين اللون الكريمي والنيلي، صوف محبوك بعناية فائقة لراحة تدوم طوال اليوم.')">
-            <div class="image-box"><img src="1579.jpg"></div>
-            <div class="card-info">
-                <h3>Cream Beige & Navy</h3>
-                <span class="price">250 درهم</span>
-            </div>
-        </div>
-
-        <div class="card" onclick="openProduct('سترة النيلي الكلاسيكية', '250 درهم', '1576.jpg', 'القطعة الأكثر طلباً، مخطط نيلي وأبيض مع تفاصيل دقيقة، تمنحك مظهراً شبابياً فاخراً.')">
-            <div class="image-box"><img src="1576.jpg"></div>
-            <div class="card-info">
-                <h3>Classic Navy Stripe</h3>
-                <span class="price">250 درهم</span>
-            </div>
-        </div>
-
-        <div class="card" onclick="openProduct('سترة Dark Grey المحبوكة', '250 درهم', '1580.jpg', 'رمادي داكن مخطط، سترة عملية جداً وفخمة في آن واحد، مناسبة لجميع المناسبات الشتوية.')">
-            <div class="image-box"><img src="1580.jpg"></div>
-            <div class="card-info">
-                <h3>Dark Charcoal Grey</h3>
-                <span class="price">250 درهم</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="pModal">
-        <span class="close-modal" onclick="closeProduct()">&times;</span>
-        <div class="modal-content">
-            <div class="modal-left">
-                <img id="mImg" src="">
-            </div>
-            <div class="modal-right">
-                <h2 id="mTitle"></h2>
-                <div class="modal-price" id="mPrice"></div>
-                <p class="modal-desc" id="mDesc"></p>
-                <a id="waLink" href="#" target="_blank" class="btn-order">
-                    <i class="fab fa-whatsapp"></i> طلب المنتج عبر واتساب
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function openProduct(name, price, img, desc) {
-            document.getElementById('mTitle').innerText = name;
-            document.getElementById('mPrice').innerText = price;
-            document.getElementById('mDesc').innerText = desc;
-            document.getElementById('mImg').src = img;
-            
-            let message = "مرحباً AD__bear، أريد طلب: " + name + " بسعر " + price;
-            document.getElementById('waLink').href = "https://wa.me/212770940367?text=" + encodeURIComponent(message);
-            
-            document.getElementById('pModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeProduct() {
-            document.getElementById('pModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        window.onclick = function(e) {
-            if (e.target == document.getElementById('pModal')) closeProduct();
-        }
-    </script>
-
-</body>
-</html>
+        .product-modal.active { display: flex; }
