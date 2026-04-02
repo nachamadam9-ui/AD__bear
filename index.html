@@ -1,107 +1,179 @@
-       
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر AD__bear 🐻</title>
+    <title>AD__bear Luxury Knitwear 🐻</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root { --primary: #1a1a1a; --accent: #25d366; --bg: #0d0d0d; }
-        body { font-family: 'Cairo', sans-serif; background-color: var(--bg); color: white; margin: 0; padding: 0; }
-        header { text-align: center; padding: 50px 20px; background: #1a1a1a; }
-        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: auto; padding: 20px; }
-        
-        .card { background: #1a1a1a; border-radius: 20px; overflow: hidden; cursor: pointer; border: 1px solid #333; transition: 0.3s; }
-        .card:hover { transform: scale(1.02); border-color: var(--accent); }
-        .card img { width: 100%; height: 350px; object-fit: cover; pointer-events: none; }
-        .card-info { padding: 15px; text-align: center; }
-        .price { color: var(--accent); font-size: 1.5rem; font-weight: bold; display: block; }
+        :root {
+            --primary: #1a1a1a;
+            --accent: #d4af37; /* لون ذهبي للفخامة */
+            --whatsapp: #25d366;
+            --bg: #0f0f0f;
+            --card-bg: #1d1d1d;
+        }
 
-        /* النافذة المنبثقة */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: none; align-items: center; justify-content: center; }
-        .modal-content { background: white; color: black; width: 90%; max-width: 500px; border-radius: 20px; padding: 20px; position: relative; text-align: center; }
-        .modal img { width: 100%; border-radius: 15px; margin-bottom: 15px; max-height: 300px; object-fit: cover; }
-        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 25px; cursor: pointer; color: #000; }
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background-color: var(--bg); 
+            color: white; margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+
+        header { 
+            text-align: center; padding: 80px 20px; 
+            background: linear-gradient(to bottom, #1a1a1a, #0f0f0f);
+            border-bottom: 1px solid #333;
+        }
+
+        header h1 { font-size: 3.5rem; margin: 0; font-weight: 900; letter-spacing: 2px; color: var(--accent); }
+        header p { opacity: 0.6; font-size: 1.2rem; margin-top: 10px; }
+
+        .container { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px; max-width: 1300px; margin: auto; padding: 50px 20px;
+        }
+
+        /* تنسيق البطاقة */
+        .card { 
+            background: var(--card-bg); border-radius: 20px; overflow: hidden; 
+            cursor: pointer; transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid #222; position: relative;
+        }
+
+        .card:hover { transform: translateY(-15px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
         
-        .whatsapp-link { 
-            display: inline-block; background: var(--accent); color: white; 
-            padding: 15px 30px; text-decoration: none; border-radius: 10px; 
-            font-weight: bold; font-size: 1.2rem; margin-top: 20px; width: 80%;
+        .image-box { width: 100%; height: 450px; overflow: hidden; }
+        .card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .card:hover img { transform: scale(1.1); }
+
+        .card-info { padding: 25px; text-align: center; }
+        .card-info h3 { margin: 0; font-size: 1.4rem; color: #fff; }
+        .price { color: var(--accent); font-size: 1.8rem; font-weight: 900; display: block; margin: 10px 0; }
+
+        /* النافذة المنبثقة (Modal) */
+        .modal { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.95); z-index: 10000; 
+            display: none; align-items: center; justify-content: center; padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content { 
+            background: #fff; color: #000; width: 100%; max-width: 1000px; 
+            border-radius: 30px; display: flex; flex-wrap: wrap; overflow: hidden;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+        .modal-left { flex: 1; min-width: 300px; background: #f0f0f0; }
+        .modal-left img { width: 100%; height: 100%; object-fit: cover; max-height: 600px; }
+
+        .modal-right { flex: 1; min-width: 300px; padding: 50px; text-align: right; display: flex; flex-direction: column; justify-content: center; }
+        .modal-right h2 { font-size: 2.5rem; margin-top: 0; }
+        .modal-price { font-size: 2.8rem; font-weight: 900; color: #c41e3a; margin-bottom: 20px; }
+        .modal-desc { color: #555; font-size: 1.1rem; margin-bottom: 30px; }
+
+        .btn-order { 
+            background: var(--whatsapp); color: #fff; padding: 20px; 
+            text-decoration: none; border-radius: 15px; font-weight: 900; 
+            font-size: 1.3rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: 0.3s;
+        }
+        .btn-order:hover { transform: scale(1.05); background: #1ebd59; }
+
+        .close-modal { position: absolute; top: 20px; left: 20px; font-size: 2.5rem; cursor: pointer; color: white; }
+
+        @media (max-width: 768px) {
+            .modal-content { flex-direction: column; max-height: 90vh; overflow-y: auto; }
+            .modal-left { height: 350px; }
+            .modal-right { padding: 30px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>متجر AD__bear 🐻✨</h1>
-        <p>اضغط على أي منتج لطلبه</p>
+        <h1>AD__bear Luxury</h1>
+        <p>تشكيلة الصوف الفاخرة لعام 2026 🐻✨</p>
     </header>
 
     <div class="container">
-        <div class="card" onclick="openMe('قميص كاجوال', '220 درهم', '0e03061c982d648fbfa56f692930f03b.jpg')">
-            <img src="0e03061c982d648fbfa56f692930f03b.jpg">
+        <div class="card" onclick="openProduct('سترة Charcoal المخططة', '250 درهم', '1578.jpg', 'سترة صوفية ثقيلة بلون فحم داكن مع خطوط كلاسيكية، تتميز بشعار الدب الفاخر وتصميم يمنحك الدفء والأناقة.')">
+            <div class="image-box"><img src="1578.jpg"></div>
             <div class="card-info">
-                <h3>قميص كاجوال أنيق</h3>
-                <span class="price">220 درهم</span>
+                <h3>Charcoal & Black Stripe</h3>
+                <span class="price">250 درهم</span>
             </div>
         </div>
 
-        <div class="card" onclick="openMe('هودي عصري', '199 درهم', '0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg')">
-            <img src="0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg">
+        <div class="card" onclick="openProduct('كنزة Cream Beige المخططة', '250 درهم', '1579.jpg', 'تصميم عصري يجمع بين اللون الكريمي والنيلي، صوف محبوك بعناية فائقة لراحة تدوم طوال اليوم.')">
+            <div class="image-box"><img src="1579.jpg"></div>
             <div class="card-info">
-                <h3>هودي عصري مريح</h3>
-                <span class="price">199 درهم</span>
+                <h3>Cream Beige & Navy</h3>
+                <span class="price">250 درهم</span>
             </div>
         </div>
 
-        <div class="card" onclick="openMe('جاكيت شتوي', '294 درهم', 'd24dbf3ebd288e1eb642aeaf6e189fbd.jpg')">
-            <img src="d24dbf3ebd288e1eb642aeaf6e189fbd.jpg">
+        <div class="card" onclick="openProduct('سترة النيلي الكلاسيكية', '250 درهم', '1576.jpg', 'القطعة الأكثر طلباً، مخطط نيلي وأبيض مع تفاصيل دقيقة، تمنحك مظهراً شبابياً فاخراً.')">
+            <div class="image-box"><img src="1576.jpg"></div>
             <div class="card-info">
-                <h3>جاكيت شتوي فاخر</h3>
-                <span class="price">294 درهم</span>
+                <h3>Classic Navy Stripe</h3>
+                <span class="price">250 درهم</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="openProduct('سترة Dark Grey المحبوكة', '250 درهم', '1580.jpg', 'رمادي داكن مخطط، سترة عملية جداً وفخمة في آن واحد، مناسبة لجميع المناسبات الشتوية.')">
+            <div class="image-box"><img src="1580.jpg"></div>
+            <div class="card-info">
+                <h3>Dark Charcoal Grey</h3>
+                <span class="price">250 درهم</span>
             </div>
         </div>
     </div>
 
-    <div id="popBox" class="modal">
+    <div class="modal" id="pModal">
+        <span class="close-modal" onclick="closeProduct()">&times;</span>
         <div class="modal-content">
-            <span class="close-btn" onclick="closeMe()">&times;</span>
-            <img id="popImg" src="">
-            <h2 id="popTitle"></h2>
-            <h3 id="popPrice" style="color: green;"></h3>
-            <p>هل تريد طلب هذا المنتج عبر الواتساب؟</p>
-            <a id="waLink" href="#" target="_blank" class="whatsapp-link">
-                <i class="fab fa-whatsapp"></i> إرسال الطلب الآن
-            </a>
+            <div class="modal-left">
+                <img id="mImg" src="">
+            </div>
+            <div class="modal-right">
+                <h2 id="mTitle"></h2>
+                <div class="modal-price" id="mPrice"></div>
+                <p class="modal-desc" id="mDesc"></p>
+                <a id="waLink" href="#" target="_blank" class="btn-order">
+                    <i class="fab fa-whatsapp"></i> طلب المنتج عبر واتساب
+                </a>
+            </div>
         </div>
     </div>
 
     <script>
-        function openMe(title, price, img) {
-            document.getElementById('popTitle').innerText = title;
-            document.getElementById('popPrice').innerText = price;
-            document.getElementById('popImg').src = img;
+        function openProduct(name, price, img, desc) {
+            document.getElementById('mTitle').innerText = name;
+            document.getElementById('mPrice').innerText = price;
+            document.getElementById('mDesc').innerText = desc;
+            document.getElementById('mImg').src = img;
             
-            // تجهيز نص الرسالة للواتساب
-            let message = "مرحباً متجر AD__bear، أريد طلب: " + title + " بسعر " + price;
-            let encodedMessage = encodeURIComponent(message);
-            document.getElementById('waLink').href = "https://wa.me/212770940367?text=" + encodedMessage;
+            let message = "مرحباً AD__bear، أريد طلب: " + name + " بسعر " + price;
+            document.getElementById('waLink').href = "https://wa.me/212770940367?text=" + encodeURIComponent(message);
             
-            document.getElementById('popBox').style.display = 'flex';
+            document.getElementById('pModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
-        function closeMe() {
-            document.getElementById('popBox').style.display = 'none';
+        function closeProduct() {
+            document.getElementById('pModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
-        // إغلاق النافذة إذا ضغط المستخدم خارجها
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('popBox')) {
-                closeMe();
-            }
+        window.onclick = function(e) {
+            if (e.target == document.getElementById('pModal')) closeProduct();
         }
     </script>
 
