@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD__bear Luxury | Black & Grey 🐻</title>
+    <title>AD__bear Stealth Luxury 🐻</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* لوحة ألوان رمادية وأسود فقط */
         :root {
             --bg-black: #000000;
-            --card-grey: #121212;
+            --card-grey: #0a0a0a;
+            --border: #1a1a1a;
             --text-white: #ffffff;
-            --text-grey: #a0a0a0;
-            --border-grey: #333333;
+            --text-muted: #888888;
         }
 
         body { 
@@ -22,132 +21,145 @@
             background-color: var(--bg-black); 
             color: var(--text-white); 
             margin: 0; padding: 0;
+            overflow-x: hidden;
         }
 
+        /* الهيدر */
         header { 
-            text-align: center; padding: 60px 20px; 
-            border-bottom: 1px solid var(--border-grey);
-            background: #050505;
+            text-align: center; padding: 100px 20px; 
+            border-bottom: 1px solid var(--border);
         }
+        header h1 { font-size: 3.5rem; font-weight: 900; letter-spacing: 5px; margin: 0; }
+        header p { color: var(--text-muted); font-size: 1.1rem; margin-top: 15px; }
 
-        header h1 { font-size: 2.8rem; margin: 0; letter-spacing: 2px; }
-        header p { color: var(--text-grey); margin-top: 10px; }
-
+        /* حاوية المنتجات */
         .container { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 30px; max-width: 1200px; margin: auto; padding: 40px 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; max-width: 1300px; margin: auto; padding: 50px 20px;
         }
 
-        /* البطاقات */
         .card { 
             background: var(--card-grey); 
-            border-radius: 15px; 
-            overflow: hidden; 
-            border: 1px solid var(--border-grey);
-            transition: 0.3s;
-            cursor: pointer;
+            border: 1px solid var(--border);
+            cursor: pointer; transition: 0.4s ease;
         }
-
-        .card:hover { border-color: var(--text-white); transform: translateY(-5px); }
+        .card:hover { border-color: var(--text-muted); transform: scale(1.02); }
         
-        .image-box { width: 100%; height: 380px; background: #1a1a1a; }
-        .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .image-box { width: 100%; height: 450px; background: #050505; }
+        .card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.6s; }
+        .card:hover img { filter: grayscale(0%); }
 
-        .card-info { padding: 20px; text-align: center; }
-        .card-info h3 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--text-white); }
-        .price { font-size: 1.5rem; font-weight: 900; color: var(--text-white); }
+        .card-info { padding: 25px; text-align: center; }
+        .card-info h3 { font-size: 1.2rem; margin: 0; letter-spacing: 1px; }
+        .price { font-size: 1.5rem; font-weight: 900; margin-top: 10px; display: block; }
 
-        /* النافذة المنبثقة */
+        /* --- نافذة العرض الكاملة (Fullscreen Modal) --- */
         .modal { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.9); z-index: 10000; 
-            display: none; align-items: center; justify-content: center;
+            background: var(--bg-black); z-index: 10000; 
+            display: none; flex-direction: column; 
+            overflow-y: auto; align-items: center;
         }
 
-        .modal-content { 
-            background: #1a1a1a; color: white; width: 90%; max-width: 800px; 
-            border-radius: 20px; display: flex; flex-wrap: wrap; overflow: hidden;
-            border: 1px solid var(--border-grey); position: relative;
+        /* زر الإغلاق الفخم */
+        .close-modal { 
+            position: fixed; top: 30px; left: 30px; 
+            font-size: 2.5rem; cursor: pointer; color: white; z-index: 10001; 
         }
 
-        .modal-left { flex: 1; min-width: 300px; height: 400px; }
-        .modal-left img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-body { width: 100%; max-width: 900px; padding-bottom: 100px; }
 
-        .modal-right { flex: 1; min-width: 300px; padding: 40px; text-align: right; }
-        
-        .btn-order { 
-            background: #ffffff; color: #000000; padding: 15px; 
-            text-decoration: none; border-radius: 10px; font-weight: 900; 
-            display: block; text-align: center; margin-top: 25px;
+        /* عرض الصورة كاملاً في البداية */
+        .full-img-container { width: 100%; margin-top: 50px; }
+        .full-img-container img { width: 100%; border-radius: 0; box-shadow: 0 0 50px rgba(255,255,255,0.05); }
+
+        /* منطقة الطلب أسفل الصورة */
+        .order-section { 
+            padding: 40px 20px; text-align: center; 
+            border-top: 1px solid var(--border); margin-top: 30px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .order-section h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .modal-price { font-size: 3rem; font-weight: 900; margin-bottom: 20px; color: var(--text-white); }
+        .modal-desc { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        .btn-whatsapp { 
+            background: #ffffff; color: #000000; padding: 22px 50px; 
+            text-decoration: none; font-weight: 900; font-size: 1.4rem; 
+            display: inline-flex; align-items: center; gap: 15px;
             transition: 0.3s;
         }
-        .btn-order:hover { background: #cccccc; }
+        .btn-whatsapp:hover { background: #888888; color: white; }
 
-        .close-modal { position: absolute; top: 15px; left: 15px; font-size: 2rem; cursor: pointer; color: white; }
-
-        @media (max-width: 768px) {
-            .modal-content { flex-direction: column; height: 80vh; overflow-y: auto; }
-        }
+        footer { text-align: center; padding: 50px; color: #333; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>AD__bear 🐻</h1>
-        <p>التشكيلة الفاخرة | صوف طبيعي 100%</p>
+        <h1>AD__bear</h1>
+        <p>الأسود والرمادي | الفخامة في أبسط صورها</p>
     </header>
 
     <div class="container">
-        <div class="card" onclick="openMe('سترة Charcoal', '250 DH', '1775131386342_edit_165168220411784.png', 'تصميم رمادي فخم بياقة دائرية وشعار الدب المذهب.')">
+        <div class="card" onclick="openMe('سترة Charcoal مضلعة', '250 DH', '1775131386342_edit_165168220411784.png', 'سترة مضلعة صوفية عالية الجودة، تصميم إنسيابي للرجل العصري الذي يعشق التفاصيل.')">
+            <div class="image-box"><img src="1775131386342_edit_165168220411784.png"></div>
+            <div class="card-info">
+                <h3>Charcoal Ribbed</h3>
+                <span class="price">250 DH</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="openMe('كنزة Cream المخططة', '250 DH', '1775131549809_edit_165190750270682.png', 'مزيج البيج والأسود المخطط، تصميم كلاسيكي يفرض حضوره في أي مكان.')">
+            <div class="image-box"><img src="1775131549809_edit_165190750270682.png"></div>
+            <div class="card-info">
+                <h3>Cream Beige Stripe</h3>
+                <span class="price">250 DH</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="openMe('سترة Navy الملكية', '250 DH', 'Screenshot_20260402_130701.jpg', 'اللون النيلي بلمسات غامقة، صوف طبيعي 100% لراحة لا توصف.')">
+            <div class="image-box"><img src="Screenshot_20260402_130701.jpg"></div>
+            <div class="card-info">
+                <h3>Classic Navy</h3>
+                <span class="price">250 DH</span>
+            </div>
+        </div>
+
+        <div class="card" onclick="openMe('سترة Dark Grey شتوية', '250 DH', 'Screenshot_20260402_130639_edit_165151901325644.jpg', 'الرمادي الداكن المفضل لدينا، قطعة تكتمل بها مجموعتك الشتوية الفخمة.')">
             <div class="image-box"><img src="Screenshot_20260402_130639_edit_165151901325644.jpg"></div>
             <div class="card-info">
-                <h3>Charcoal Stripe</h3>
-                <span class="price">250 DH</span>
-            </div>
-        </div>
-
-        <div class="card" onclick="openMe('كنزة Cream', '250 DH', 'Screenshot_20260402_130639_edit_165151901325644.jpg', 'مزيج رائع بين البيج الكريمي والخطوط الداكنة.')">
-            <div class="image-box"><img src="1579.jpg"></div>
-            <div class="card-info">
-                <h3>Cream Beige</h3>
-                <span class="price">250 DH</span>
-            </div>
-        </div>
-
-        <div class="card" onclick="openMe('سترة Navy Classic', '250 DH', '1576.jpg', 'خطوط أفقية متناسقة تمنحك مظهراً جذاباً.')">
-            <div class="image-box"><img src="1576.jpg"></div>
-            <div class="card-info">
-                <h3>Navy Classic</h3>
-                <span class="price">250 DH</span>
-            </div>
-        </div>
-
-        <div class="card" onclick="openMe('سترة Dark Grey', '250 DH', '1580.jpg', 'الرمادي الداكن لإطلالة شتوية غامضة وأنيقة.')">
-            <div class="image-box"><img src="1580.jpg"></div>
-            <div class="card-info">
-                <h3>Dark Grey</h3>
+                <h3>Midnight Grey</h3>
                 <span class="price">250 DH</span>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="popWindow">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeMe()">&times;</span>
-            <div class="modal-left">
+    <div id="fullView" class="modal">
+        <span class="close-modal" onclick="closeMe()">&times;</span>
+        <div class="modal-body">
+            <div class="full-img-container">
                 <img id="popImg" src="">
             </div>
-            <div class="modal-right">
+            
+            <div class="order-section">
                 <h2 id="popTitle"></h2>
-                <div style="font-size: 2rem; font-weight: 900; margin-bottom: 10px;" id="popPrice"></div>
-                <p id="popDesc" style="color: #bbb;"></p>
-                <a id="waButton" href="#" target="_blank" class="btn-order">
-                    <i class="fab fa-whatsapp"></i> طلب عبر الواتساب
+                <div class="modal-price" id="popPrice"></div>
+                <p class="modal-desc" id="popDesc"></p>
+                <a id="waLink" href="#" target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> إرسال الطلب عبر واتساب
                 </a>
             </div>
         </div>
     </div>
+
+    <footer>
+        &copy; 2026 AD__bear Stealth Luxury
+    </footer>
 
     <script>
         function openMe(title, price, img, desc) {
@@ -156,18 +168,16 @@
             document.getElementById('popDesc').innerText = desc;
             document.getElementById('popImg').src = img;
             
-            let msg = "مرحباً AD__bear، أريد طلب: " + title;
-            document.getElementById('waButton').href = "https://wa.me/212770940367?text=" + encodeURIComponent(msg);
+            let message = "مرحباً متجر AD__bear، أريد طلب القطعة الفاخرة: " + title;
+            document.getElementById('waLink').href = "https://wa.me/212770940367?text=" + encodeURIComponent(message);
             
-            document.getElementById('popWindow').style.display = 'flex';
+            document.getElementById('fullView').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
         function closeMe() {
-            document.getElementById('popWindow').style.display = 'none';
-        }
-
-        window.onclick = function(e) {
-            if (e.target == document.getElementById('popWindow')) closeMe();
+            document.getElementById('fullView').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
     </script>
 
