@@ -1,127 +1,148 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AD__bear Luxury</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"><style>
-:root {
-  --bg:#000;
-  --card:#0d0d0d;
-  --royal:#6a040f;
-  --white:#fff;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD__bear Luxury | 🐻🍷</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #000000;
+            --card: #0d0d0d;
+            --royal: #6a040f; /* العنابي الفخم */
+            --white: #ffffff;
+        }
 
-body{
-  font-family:'Cairo',sans-serif;
-  background:var(--bg);
-  color:var(--white);
-  margin:0;
-}
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--white); margin: 0; padding: 0; }
+        
+        header { text-align: center; padding: 50px 20px; border-bottom: 2px solid var(--royal); }
+        
+        .container { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; max-width: 1200px; margin: auto; padding: 30px 15px; 
+        }
 
-header{
-  text-align:center;
-  padding:40px 20px;
-  border-bottom:2px solid var(--royal);
-}
+        /* كارت المنتج */
+        .card { 
+            background: var(--card); border: 1px solid #222;
+            border-radius: 12px; overflow: hidden; cursor: pointer; text-align: center;
+            transition: 0.3s;
+        }
+        .card:hover { border-color: var(--royal); transform: scale(1.02); }
+        .card img { width: 100%; height: 350px; object-fit: cover; }
+        .card-info { padding: 15px; }
+        .price { color: var(--royal); font-size: 1.5rem; font-weight: 900; display: block; margin: 10px 0; }
 
-.container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-  padding:20px;
-  max-width:1200px;
-  margin:auto;
-}
+        /* زر عرض المزيد */
+        .btn-more { background: var(--royal); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; }
 
-.card{
-  background:var(--card);
-  border-radius:12px;
-  overflow:hidden;
-  transition:.3s;
-}
+        /* المودال (النافذة) */
+        #myModal { 
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; 
+            width: 100%; height: 100%; background: rgba(0,0,0,0.95); 
+            align-items: center; justify-content: center;
+        }
 
-.card:hover{
-  transform:translateY(-5px);
-  border:1px solid var(--royal);
-}
+        .modal-content { 
+            background: #111; width: 90%; max-width: 450px; 
+            padding: 20px; border-radius: 15px; border: 2px solid var(--royal);
+            text-align: center; position: relative;
+        }
 
-.card img{
-  width:100%;
-  height:300px;
-  object-fit:cover;
-}
+        .modal-content img { width: 100%; border-radius: 10px; }
+        .close { position: absolute; top: 10px; left: 15px; color: white; font-size: 30px; cursor: pointer; }
 
-.card-info{
-  padding:15px;
-  text-align:center;
-}
+        /* زر الواتساب */
+        .wa-link { 
+            display: block; background: #25d366; color: white; 
+            text-decoration: none; padding: 15px; border-radius: 10px; 
+            margin-top: 20px; font-weight: 900; font-size: 1.2rem;
+        }
+        .wa-link:hover { background: #128c7e; }
+    </style>
+</head>
+<body>
 
-.price{
-  color:var(--royal);
-  font-weight:bold;
-  font-size:18px;
-}
+    <header>
+        <h1>AD__bear Luxury 🐻🍷</h1>
+    </header>
 
-.btn{
-  background:var(--royal);
-  border:none;
-  color:white;
-  padding:10px;
-  width:100%;
-  border-radius:6px;
-  cursor:pointer;
-}
+    <div class="container">
+        <div class="card" onclick="openBox('سترة Charcoal', '250 DH', '1775131386342_edit_165168220411784.png')">
+            <img src="1775131386342_edit_165168220411784.png">
+            <div class="card-info">
+                <h3>Charcoal Ribbed</h3>
+                <span class="price">250 DH</span>
+                <button class="btn-more">عرض المزيد</button>
+            </div>
+        </div>
 
-#modal{
-  position:fixed;
-  top:0;left:0;
-  width:100%;height:100%;
-  background:rgba(0,0,0,.9);
-  display:none;
-  align-items:center;
-  justify-content:center;
-}
+        <div class="card" onclick="openBox('كنزة Cream', '250 DH', '1775131549809_edit_165190750270682.png')">
+            <img src="1775131549809_edit_165190750270682.png">
+            <div class="card-info">
+                <h3>Cream Beige</h3>
+                <span class="price">250 DH</span>
+                <button class="btn-more">عرض المزيد</button>
+            </div>
+        </div>
 
-#modal.active{
-  display:flex;
-}
+        <div class="card" onclick="openBox('سترة Navy Classic', '250 DH', 'Screenshot_20260402_130701.jpg')">
+            <img src="Screenshot_20260402_130701.jpg">
+            <div class="card-info">
+                <h3>Navy Classic</h3>
+                <span class="price">250 DH</span>
+                <button class="btn-more">عرض المزيد</button>
+            </div>
+        </div>
 
-.modal-box{
-  background:#111;
-  padding:20px;
-  border-radius:12px;
-  max-width:400px;
-  width:90%;
-  text-align:center;
-  animation:fade .3s ease;
-}
+        <div class="card" onclick="openBox('سترة Dark Grey', '250 DH', 'Screenshot_20260402_130639_edit_165151901325644.jpg')">
+            <img src="Screenshot_20260402_130639_edit_165151901325644.jpg">
+            <div class="card-info">
+                <h3>Dark Grey</h3>
+                <span class="price">250 DH</span>
+                <button class="btn-more">عرض المزيد</button>
+            </div>
+        </div>
+    </div>
 
-@keyframes fade{
-  from{opacity:0; transform:scale(.9)}
-  to{opacity:1; transform:scale(1)}
-}
+    <div id="myModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBox()">&times;</span>
+            <img id="modalImg" src="">
+            <h2 id="modalTitle"></h2>
+            <h3 id="modalPrice" style="color:var(--royal)"></h3>
+            <a id="waBtn" href="#" target="_blank" class="wa-link">
+                <i class="fab fa-whatsapp"></i> اطلب عبر واتساب
+            </a>
+        </div>
+    </div>
 
-.close{
-  position:absolute;
-  top:15px;
-  left:20px;
-  font-size:25px;
-  cursor:pointer;
-}
+    <script>
+        function openBox(title, price, img) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalImg').src = img;
+            
+            let message = encodeURIComponent("مرحباً أريد طلب: " + title);
+            document.getElementById('waBtn').href = "https://wa.me/212770940367?text=" + message;
+            
+            document.getElementById('myModal').style.display = "flex";
+        }
 
-.wa{
-  display:block;
-  margin-top:15px;
-  background:#25d366;
-  padding:12px;
-  border-radius:8px;
-  text-decoration:none;
-  color:white;
-  font-weight:bold;
-}
+        function closeBox() {
+            document.getElementById('myModal').style.display = "none";
+        }
 
-</style></head><body><header>
-<h1>AD__bear Luxury 🐻🍷</h1>
-</header><div class="container" id="products"></div><div id="modal">
-<div class="modal-box">
-<span class="close"
+        // إغلاق النافذة إذا ضغط المستخدم خارجها
+        window.onclick = function(event) {
+            let modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                closeBox();
+            }
+        }
+    </script>
+
+</body>
+</html>
