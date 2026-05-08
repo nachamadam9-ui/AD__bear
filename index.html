@@ -3,200 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD__bear | Luxury Fashion 🐻</title>
+    <title>AD__bear | The Elite Collection 🐻</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700;900&family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
-            --gold: #d4af37;
-            --black: #050505;
-            --glass: rgba(255, 255, 255, 0.05);
+            --primary: #000000;
+            --gold: #c5a059;
+            --silver: #e0e0e0;
             --accent: #25d366;
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        * { box-sizing: border-box; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        * { cursor: none !important; box-sizing: border-box; } /* الماوس المخصص */
 
         body { 
             font-family: 'Cairo', sans-serif; 
-            background: var(--black); 
+            background: var(--primary); 
             color: white; margin: 0; overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 20% 30%, #1a1a1a 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, #111 0%, transparent 40%);
+            scroll-behavior: smooth;
         }
 
-        /* هيدر سينمائي */
-        header { 
-            height: 60vh; display: flex; flex-direction: column; 
-            align-items: center; justify-content: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0), var(--black)),
-                        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1500');
-            background-size: cover; background-position: center;
-            text-align: center; border-bottom: 1px solid var(--glass);
+        /* الماوس الذكي */
+        #cursor {
+            position: fixed; width: 20px; height: 20px; background: white;
+            border-radius: 50%; pointer-events: none; z-index: 9999;
+            mix-blend-mode: difference; transition: transform 0.1s;
         }
 
-        header h1 { 
-            font-family: 'Playfair Display', serif; font-size: 5rem; 
-            margin: 0; letter-spacing: 5px; text-transform: uppercase;
-            background: linear-gradient(45deg, #fff, var(--gold), #fff);
+        /* واجهة الدخول (Hero Section) */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            position: relative; overflow: hidden;
+        }
+
+        .hero-content { z-index: 2; text-align: center; }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif; font-size: clamp(3rem, 10vw, 8rem);
+            margin: 0; letter-spacing: 15px; font-weight: 700;
+            background: linear-gradient(to bottom, #fff 30%, #444 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+            animation: fadeIn 2s ease-out;
         }
 
-        header p { font-weight: 300; letter-spacing: 3px; opacity: 0.6; margin-top: 10px; }
+        .hero p { letter-spacing: 8px; font-weight: 200; opacity: 0.5; text-transform: uppercase; }
 
+        /* حاوية المنتجات */
         .container { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-            gap: 50px; max-width: 1400px; margin: -100px auto 100px; padding: 0 30px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+            gap: 80px; max-width: 1600px; margin: -10vh auto 150px; padding: 0 50px;
         }
 
-        /* بطاقة المنتج الفخمة */
+        /* البطاقة الأسطورية */
+        .item {
+            position: relative; perspective: 1000px;
+        }
+
         .card { 
-            background: var(--glass); border-radius: 40px; overflow: hidden; 
-            backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1);
-            position: relative; cursor: pointer;
+            background: #0a0a0a; border-radius: 0; overflow: hidden; 
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition); position: relative;
         }
 
-        .card::before { /* تأثير اللمعة */
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
-            transform: skewX(-25deg); transition: 0.8s;
-        }
+        .card:hover { transform: scale(0.98); border-color: rgba(255,255,255,0.2); }
 
-        .card:hover::before { left: 150%; }
-
-        .card:hover { transform: translateY(-20px); box-shadow: 0 30px 60px rgba(0,0,0,0.8); border-color: var(--gold); }
-
-        .img-box { width: 100%; height: 500px; overflow: hidden; position: relative; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 1s; }
-        .card:hover img { transform: scale(1.1) rotate(2deg); filter: brightness(0.7); }
-
-        .card-info { padding: 35px; text-align: center; background: rgba(0,0,0,0.4); }
-        .card-info h3 { font-size: 1.8rem; margin: 0; font-weight: 900; letter-spacing: 1px; }
-        .price { color: var(--gold); font-size: 2.2rem; font-weight: 900; margin: 15px 0; display: block; font-family: 'Playfair Display', serif; }
-
-        /* المودال الاحترافي */
-        .modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.98); z-index: 1000;
-            display: none; align-items: center; justify-content: center; padding: 20px;
-        }
-
-        .modal-content {
-            background: #000; border: 1px solid var(--gold); width: 100%; max-width: 1200px;
-            display: grid; grid-template-columns: 1fr 1fr; border-radius: 50px;
-            overflow: hidden; position: relative; box-shadow: 0 0 100px rgba(212, 175, 55, 0.2);
-        }
-
-        .modal-close {
-            position: absolute; top: 30px; left: 30px; color: #fff; 
-            font-size: 2rem; cursor: pointer; z-index: 10;
-        }
-
-        .modal-img { height: 700px; background: #111; }
-        .modal-img img { width: 100%; height: 100%; object-fit: cover; }
-
-        .modal-details { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
-        .modal-details h2 { font-size: 3.5rem; margin: 0; font-family: 'Playfair Display', serif; }
-        .modal-details .modal-price { color: var(--gold); font-size: 3.5rem; font-weight: 900; margin: 30px 0; }
+        .img-container { width: 100%; height: 600px; overflow: hidden; position: relative; }
         
-        .buy-btn {
-            background: var(--gold); color: #000; padding: 25px; 
-            border-radius: 20px; text-decoration: none; font-weight: 900;
-            font-size: 1.5rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px;
+        .card img { 
+            width: 100%; height: 100%; object-fit: cover; filter: grayscale(40%);
+            transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
-        .buy-btn:hover { background: #fff; transform: scale(1.05); }
 
-        footer { text-align: center; padding: 50px; opacity: 0.3; letter-spacing: 2px; }
+        .card:hover img { transform: scale(1.15) rotate(1deg); filter: grayscale(0%); }
+
+        /* تفاصيل البطاقة */
+        .card-details { padding: 40px; background: #000; display: flex; justify-content: space-between; align-items: flex-end; }
+        .card-details h3 { margin: 0; font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; }
+        .card-details .price { color: var(--gold); font-family: 'Cinzel', serif; font-size: 1.8rem; }
+
+        /* المودال (Showcase) */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000; z-index: 10000; display: none;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .modal-img { background: #111; overflow: hidden; }
+        .modal-img img { width: 100%; height: 100%; object-fit: cover; animation: slideIn 1s ease; }
+
+        .modal-info { padding: 100px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        .close-btn { position: absolute; top: 50px; left: 50px; font-size: 3rem; font-weight: 100; pointer-events: auto; }
+
+        .modal-info h2 { font-size: 4rem; font-family: 'Cinzel', serif; margin: 0; }
+        .modal-info .m-price { font-size: 3rem; color: var(--gold); margin: 30px 0; }
+
+        .whatsapp-link {
+            border: 1px solid white; color: white; padding: 25px 50px;
+            text-decoration: none; font-size: 1.2rem; text-align: center;
+            display: inline-block; margin-top: 50px; transition: 0.4s;
+        }
+        .whatsapp-link:hover { background: white; color: black; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideIn { from { transform: scale(1.2); } to { transform: scale(1); } }
 
         @media (max-width: 900px) {
-            .modal-content { grid-template-columns: 1fr; }
-            .modal-img { height: 400px; }
-            header h1 { font-size: 3rem; }
+            .modal { grid-template-columns: 1fr; overflow-y: auto; }
+            .modal-info { padding: 40px; }
+            .container { grid-template-columns: 1fr; padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>AD__bear</h1>
-        <p>H A U T E &nbsp; C O U T U R E</p>
-    </header>
+    <div id="cursor"></div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AD__BEAR</h1>
+            <p>Define Your Status</p>
+        </div>
+    </section>
 
     <div class="container">
-        <div class="card" onclick="openShowcase('قميص الملكي', '220 درهم', '0e03061c982d648fbfa56f692930f03b.jpg', 'قطعة فنية من القطن المصري الخالص، مصممة لأصحاب الذوق الرفيع الذين يبحثون عن التميز.')">
-            <div class="img-box">
-                <img src="0e03061c982d648fbfa56f692930f03b.jpg">
-            </div>
-            <div class="card-info">
-                <h3>قميص كاجوال أنيق</h3>
-                <span class="price">220 DH</span>
-            </div>
-        </div>
-
-        <div class="card" onclick="openShowcase('هودي الأناقة', '199 درهم', '0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg', 'هودي عصري بتفاصيل مخملية، يعيد تعريف الراحة بمفهوم الفخامة العصرية.')">
-            <div class="img-box">
-                <img src="0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg">
-            </div>
-            <div class="card-info">
-                <h3>هودي عصري مريح</h3>
-                <span class="price">199 DH</span>
+        <div class="item" onclick="openProduct('القميص الملكي', '220 DH', '0e03061c982d648fbfa56f692930f03b.jpg', 'صُنع بدقة متناهية من ألياف القطن الفاخر، صُمم هذا القميص ليعكس قوة الحضور والأناقة الكلاسيكية.')">
+            <div class="card">
+                <div class="img-container">
+                    <img src="0e03061c982d648fbfa56f692930f03b.jpg">
+                </div>
+                <div class="card-details">
+                    <div>
+                        <p style="opacity: 0.4; margin:0">LIMITED EDITION</p>
+                        <h3>قميص كاجوال أنيق</h3>
+                    </div>
+                    <span class="price">220 DH</span>
+                </div>
             </div>
         </div>
 
-        <div class="card" onclick="openShowcase('جاكيت النخبة', '294 درهم', 'd24dbf3ebd288e1eb642aeaf6e189fbd.jpg', 'جاكيت شتوي بمعايير عالمية، عزل حراري تام مع تصميم يخطف الأنظار في كل مكان.')">
-            <div class="img-box">
-                <img src="d24dbf3ebd288e1eb642aeaf6e189fbd.jpg">
-            </div>
-            <div class="card-info">
-                <h3>جاكيت شتوي فاخر</h3>
-                <span class="price">294 DH</span>
+        <div class="item" onclick="openProduct('هودي النخبة', '199 DH', '0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg', 'مزيج مثالي بين الراحة المطلقة والتصميم الحضري، هذا الهودي ليس مجرد قطعة ملابس، بل هو بيان شخصي.')">
+            <div class="card">
+                <div class="img-container">
+                    <img src="0e2bcdba3fc4e544b30e9af4d3e37ff6.jpg">
+                </div>
+                <div class="card-details">
+                    <div>
+                        <p style="opacity: 0.4; margin:0">PREMIUM WEAR</p>
+                        <h3>هودي عصري مريح</h3>
+                    </div>
+                    <span class="price">199 DH</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal" id="showcase">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeShowcase()">&times;</span>
-            <div class="modal-img">
-                <img id="showImg" src="">
-            </div>
-            <div class="modal-details">
-                <h2 id="showTitle">المنتج الملكي</h2>
-                <div class="modal-price" id="showPrice">000 DH</div>
-                <p id="showDesc" style="font-size: 1.2rem; line-height: 2; opacity: 0.7; margin-bottom: 40px;"></p>
-                <a href="https://wa.me/212770940367" class="buy-btn" target="_blank">
-                    <i class="fab fa-whatsapp"></i> اطلب القطعة الآن
-                </a>
+        <div class="item" onclick="openProduct('السترة العظمى', '294 DH', 'd24dbf3ebd288e1eb642aeaf6e189fbd.jpg', 'صُممت لمواجهة أقسى الظروف دون التنازل عن المظهر الفاخر. بطانة حرارية متطورة مع هيكل خارجي مقاوم.')">
+            <div class="card">
+                <div class="img-container">
+                    <img src="d24dbf3ebd288e1eb642aeaf6e189fbd.jpg">
+                </div>
+                <div class="card-details">
+                    <div>
+                        <p style="opacity: 0.4; margin:0">ESSENTIALS</p>
+                        <h3>جاكيت شتوي فاخر</h3>
+                    </div>
+                    <span class="price">294 DH</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 AD__bear LUXURY GROUP
-    </footer>
+    <div class="modal" id="pModal">
+        <div class="close-btn" onclick="closeProduct()">&times;</div>
+        <div class="modal-img">
+            <img id="pImg" src="">
+        </div>
+        <div class="modal-info">
+            <h2 id="pTitle">اسم المنتج</h2>
+            <div class="m-price" id="pPrice">000 DH</div>
+            <p id="pDesc" style="font-size: 1.1rem; line-height: 2; opacity: 0.7;"></p>
+            <a href="https://wa.me/212770940367" class="whatsapp-link" target="_blank">
+                طلب القطعة الآن <i class="fab fa-whatsapp" style="margin-right:15px"></i>
+            </a>
+        </div>
+    </div>
 
     <script>
-        function openShowcase(name, price, img, desc) {
-            document.getElementById('showTitle').innerText = name;
-            document.getElementById('showPrice').innerText = price;
-            document.getElementById('showDesc').innerText = desc;
-            document.getElementById('showImg').src = img;
-            document.getElementById('showcase').style.display = 'flex';
+        // حركة الماوس المخصص
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // فتح المنتج
+        function openProduct(name, price, img, desc) {
+            document.getElementById('pTitle').innerText = name;
+            document.getElementById('pPrice').innerText = price;
+            document.getElementById('pDesc').innerText = desc;
+            document.getElementById('pImg').src = img;
+            document.getElementById('pModal').style.display = 'grid';
             document.body.style.overflow = 'hidden';
         }
 
-        function closeShowcase() {
-            document.getElementById('showcase').style.display = 'none';
+        function closeProduct() {
+            document.getElementById('pModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
-        window.onclick = function(e) {
-            if (e.target == document.getElementById('showcase')) closeShowcase();
-        }
+        // تكبير الماوس عند لمس العناصر
+        document.querySelectorAll('.item, .whatsapp-link, .close-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(4)');
+            el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        });
     </script>
-
 </body>
 </html>
