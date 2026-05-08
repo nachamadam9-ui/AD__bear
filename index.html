@@ -1,174 +1,281 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD__bear Luxury | 🐻🍷</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root { --bg:#000; --card:#0d0d0d; --royal:#6a040f; --white:#fff; }
-        body { font-family:'Cairo',sans-serif; background:var(--bg); color:var(--white); margin:0; padding:0; }
-        header { text-align:center; padding:40px 20px; border-bottom:2px solid var(--royal); }
-        
-        .container { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:20px; max-width:1200px; margin:auto; }
-        
-        /* البطاقة */
-        .card { background:var(--card); border-radius:12px; overflow:hidden; transition:.3s; cursor:pointer; border: 1px solid #1a1a1a; position: relative; }
-        .card:hover { transform:translateY(-5px); border: 1px solid var(--royal); }
-        .card img { width:100%; height:300px; object-fit:cover; pointer-events: none; }
-        .card-info { padding:15px; text-align:center; pointer-events: none; }
-        .price { color:var(--royal); font-weight:bold; font-size:18px; display:block; margin:5px 0; }
-        .btn-fake { background:var(--royal); color:white; padding:10px; width:100%; border-radius:6px; border:none; font-weight:bold; pointer-events: none; }
+<style>
+:root{
+    --bg:#000;
+    --card:#0d0d0d;
+    --royal:#6a040f;
+    --royal-light:#9d0208;
+    --white:#fff;
+    --gray:#999;
+}
 
-        /* النافذة المنبثقة - الإصلاح هنا */
-        #productModal { 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.98); /* سواد شبه تام للتركيز */
-            display: none; /* مخفي */
-            align-items: center; 
-            justify-content: center; 
-            z-index: 99999; /* أعلى طبقة ممكنة */
-        }
+/* Global */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .modal-box { 
-            background:#111; 
-            padding:20px; 
-            border-radius:15px; 
-            border:1px solid var(--royal);
-            max-width:450px; 
-            width:90%; 
-            text-align:center; 
-            position:relative; /* ضروري لزر الإغلاق */
-            animation:fade .3s ease;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        @keyframes fade { from {opacity:0; transform:scale(.9)} to {opacity:1; transform:scale(1)} }
+body{
+    font-family:'Cairo',sans-serif;
+    background:linear-gradient(to bottom,#000,#070707);
+    color:var(--white);
+    overflow-x:hidden;
+}
 
-        /* زر الإغلاق الفوري */
-        .close-btn { 
-            position: absolute; 
-            top: -50px; /* خارج المربع قليلاً للأعلى */
-            left: 0; 
-            font-size: 40px; 
-            cursor: pointer; 
-            color: #fff; 
-            font-weight: bold;
-            z-index: 100001;
-            padding: 10px;
-        }
+/* Scrollbar */
+::-webkit-scrollbar{
+    width:8px;
+}
 
-        #modalImg { width:100%; border-radius:10px; margin-bottom:15px; max-height:350px; object-fit:cover; }
-        
-        /* زر الواتساب - التأكد من ظهوره وقابليته للضغط */
-        .wa-link { 
-            display: block !important; 
-            margin-top: 15px; 
-            background: #25d366; 
-            padding: 15px; 
-            border-radius: 10px; 
-            text-decoration: none; 
-            color: white; 
-            font-weight: bold; 
-            font-size: 1.2rem;
-            position: relative;
-            z-index: 100002;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-        .wa-link:hover { background: #128c7e; }
-    </style>
-</head>
-<body>
+::-webkit-scrollbar-track{
+    background:#111;
+}
 
-<header>
-    <h1>AD__bear Luxury 🐻🍷</h1>
-</header>
+::-webkit-scrollbar-thumb{
+    background:var(--royal);
+    border-radius:20px;
+}
 
-<div class="container">
-    <div class="card" onclick="openMe('سترة Charcoal مضلعة', '250 DH', '1775131386342_edit_165168220411784.png')">
-        <img src="1775131386342_edit_165168220411784.png">
-        <div class="card-info">
-            <h3>Charcoal Ribbed</h3>
-            <span class="price">199 DH</span>
-            <button class="btn-fake">عرض المزيد</button>
-        </div>
-    </div>
+/* Header */
+header{
+    text-align:center;
+    padding:50px 20px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(10px);
+    position:sticky;
+    top:0;
+    z-index:999;
+}
 
-    <div class="card" onclick="openMe('كنزة Cream المخططة', '250 DH', '1775131549809_edit_165190750270682.png')">
-        <img src="1775131549809_edit_165190750270682.png">
-        <div class="card-info">
-            <h3>Cream Beige</h3>
-            <span class="price">199 DH</span>
-            <button class="btn-fake">عرض المزيد</button>
-        </div>
-    </div>
+header h1{
+    font-size:2.5rem;
+    font-weight:900;
+    letter-spacing:1px;
+    color:#fff;
+    text-shadow:0 0 20px rgba(106,4,15,.7);
+}
 
-    <div class="card" onclick="openMe('سترة Navy الكلاسيكية', '250 DH', 'Screenshot_20260402_130701.jpg')">
-        <img src="Screenshot_20260402_130701.jpg">
-        <div class="card-info">
-            <h3>Navy Classic</h3>
-            <span class="price">199 DH</span>
-            <button class="btn-fake">عرض المزيد</button>
-        </div>
-    </div>
+/* Container */
+.container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+    padding:30px;
+    max-width:1300px;
+    margin:auto;
+}
 
-    <div class="card" onclick="openMe('سترة Midnight Grey', '250 DH', 'Screenshot_20260402_130639_edit_165151901325644.jpg')">
-        <img src="Screenshot_20260402_130639_edit_165151901325644.jpg">
-        <div class="card-info">
-            <h3>Dark Grey</h3>
-            <span class="price">199 DH</span>
-            <button class="btn-fake">عرض المزيد</button>
-        </div>
-    </div>
-</div>
+/* Cards */
+.card{
+    background:linear-gradient(145deg,#0d0d0d,#151515);
+    border-radius:18px;
+    overflow:hidden;
+    transition:.4s ease;
+    cursor:pointer;
+    border:1px solid rgba(255,255,255,.05);
+    position:relative;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
 
-<div id="productModal">
-    <div class="modal-box">
-        <span class="close-btn" onclick="closeMe()">إغلاق ×</span>
-        
-        <img id="modalImg" src="">
-        <h2 id="modalTitle" style="margin:10px 0; color:#fff;"></h2>
-        <div id="modalPrice" style="color:var(--royal); font-size:24px; font-weight:bold; margin-bottom:15px;"></div>
-        
-        <a id="waBtn" href="#" target="_blank" class="wa-link">
-            اطلب عبر واتساب الآن
-        </a>
-    </div>
-</div>
+.card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.08),
+        transparent
+    );
+    transition:.7s;
+}
 
-<script>
-    // وظيفة الفتح المضمونة
-    function openMe(name, price, image) {
-        // تحديث البيانات
-        document.getElementById('modalTitle').innerText = name;
-        document.getElementById('modalPrice').innerText = price;
-        document.getElementById('modalImg').src = image;
-        
-        // تجهيز الرابط
-        var message = "مرحباً متجر AD__bear، أريد طلب: " + name;
-        document.getElementById('waBtn').href = "https://wa.me/212770940367?text=" + encodeURIComponent(message);
-        
-        // إظهار النافذة
-        document.getElementById('productModal').style.display = "flex";
-        // منع التمرير في الخلفية حتى لا يضيع المستخدم
-        document.body.style.overflow = "hidden";
+.card:hover::before{
+    left:100%;
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.02);
+    border:1px solid var(--royal);
+    box-shadow:0 15px 40px rgba(106,4,15,.5);
+}
+
+.card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    transition:.5s ease;
+}
+
+.card:hover img{
+    transform:scale(1.06);
+}
+
+.card-info{
+    padding:20px;
+    text-align:center;
+}
+
+.card-info h3{
+    font-size:1.3rem;
+    margin-bottom:10px;
+}
+
+.price{
+    color:#ff4d6d;
+    font-size:1.2rem;
+    font-weight:bold;
+    display:block;
+    margin-bottom:15px;
+}
+
+.btn-fake{
+    width:100%;
+    border:none;
+    padding:12px;
+    border-radius:12px;
+    background:linear-gradient(to right,var(--royal),var(--royal-light));
+    color:#fff;
+    font-weight:bold;
+    font-size:1rem;
+    transition:.3s;
+}
+
+.card:hover .btn-fake{
+    transform:scale(1.03);
+}
+
+/* Modal */
+#productModal{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.92);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+    padding:20px;
+}
+
+.modal-box{
+    background:linear-gradient(145deg,#111,#191919);
+    border-radius:25px;
+    padding:25px;
+    max-width:480px;
+    width:100%;
+    text-align:center;
+    position:relative;
+    border:1px solid rgba(255,255,255,.08);
+    animation:fade .4s ease;
+    box-shadow:0 0 40px rgba(106,4,15,.4);
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.9);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* Close */
+.close-btn{
+    position:absolute;
+    top:15px;
+    left:20px;
+    font-size:2rem;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.close-btn:hover{
+    color:#ff4d6d;
+    transform:rotate(90deg);
+}
+
+/* Modal Image */
+#modalImg{
+    width:100%;
+    border-radius:18px;
+    max-height:380px;
+    object-fit:cover;
+    margin-bottom:20px;
+}
+
+/* Modal Text */
+#modalTitle{
+    font-size:1.6rem;
+    margin-bottom:10px;
+}
+
+#modalPrice{
+    color:#ff4d6d;
+    font-size:1.7rem;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+/* WhatsApp Button */
+.wa-link{
+    display:block;
+    width:100%;
+    padding:16px;
+    border-radius:14px;
+    background:linear-gradient(to right,#25d366,#128c7e);
+    color:white;
+    text-decoration:none;
+    font-size:1.1rem;
+    font-weight:bold;
+    transition:.3s ease;
+    box-shadow:0 10px 25px rgba(37,211,102,.3);
+}
+
+.wa-link:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 35px rgba(37,211,102,.5);
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+    header h1{
+        font-size:2rem;
     }
 
-    // وظيفة الإغلاق المضمونة
-    function closeMe() {
-        document.getElementById('productModal').style.display = "none";
-        document.body.style.overflow = "auto";
+    .container{
+        padding:20px;
+        gap:20px;
     }
 
-    // إغلاق عند الضغط على المساحة السوداء
-    document.getElementById('productModal').onclick = function(event) {
-        if (event.target == this) {
-            closeMe();
-        }
-    };
-</script>
+    .card img{
+        height:280px;
+    }
 
-</body>
-</html>
+    .modal-box{
+        padding:20px;
+    }
+
+    #modalTitle{
+        font-size:1.3rem;
+    }
+
+    #modalPrice{
+        font-size:1.4rem;
+    }
+
+}
+</style>
